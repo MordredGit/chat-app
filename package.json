@@ -1,6 +1,6 @@
 {
   "name": "chat",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "dependencies": {
     "@emoji-mart/data": "^1.0.6",
@@ -12,7 +12,6 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@types/react": "^18.0.38",
     "emoji-mart": "^5.2.2",
     "framer-motion": "^7.5.3",
     "phosphor-react": "^1.4.1",
@@ -54,6 +53,7 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^7.5.0",
+    "@types/react": "^18.0.38",
     "ts-loader": "^9.4.2",
     "typescript": "^5.0.4"
   }
