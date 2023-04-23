@@ -12,6 +12,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/react": "^18.0.38",
     "emoji-mart": "^5.2.2",
     "framer-motion": "^7.5.3",
     "phosphor-react": "^1.4.1",
@@ -23,6 +24,7 @@
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
     "simplebar-react": "^2.4.3",
+    "source-map-loader": "^4.0.1",
     "stylis-plugin-rtl": "^2.0.2",
     "web-vitals": "^2.1.4"
   },
@@ -51,6 +53,8 @@
     ]
   },
   "devDependencies": {
-    "@faker-js/faker": "^7.5.0"
+    "@faker-js/faker": "^7.5.0",
+    "ts-loader": "^9.4.2",
+    "typescript": "^5.0.4"
   }
 }

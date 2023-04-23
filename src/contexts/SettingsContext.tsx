@@ -1,11 +1,17 @@
 // provider === component
-import { createContext, useEffect } from "react";
+import { createContext, ReactNode, useEffect } from "react";
 import { defaultSettings } from "../config";
 import useLocalStorage from "../hooks/useLocalStorage";
 import getColorPresets, {
   defaultPreset,
   colorPresets,
 } from "../utils/getColorPresets";
+
+type CustomEvent = Event & {
+  target: EventTarget & {
+    value: string
+  }
+}
 
 const initialState = {
   ...defaultSettings,
@@ -41,7 +47,7 @@ const initialState = {
 
 const SettingsContext = createContext(initialState);
 
-const SettingsProvider = ({ children }) => {
+const SettingsProvider = ({ children }: { children: ReactNode }) => {
   const [settings, setSettings] = useLocalStorage("settings", {
     themeMode: initialState.themeMode,
     themeLayout: initialState.themeLayout,
@@ -69,7 +75,9 @@ const SettingsProvider = ({ children }) => {
     });
   };
 
-  const onChangeMode = (event) => {
+  const onChangeMode = (event: CustomEvent) => {
+    if (!event.target) return;
+
     setSettings({
       ...settings,
       themeMode: event.target.value,
@@ -85,14 +93,14 @@ const SettingsProvider = ({ children }) => {
     });
   };
 
-  const onChangeDirection = (event) => {
+  const onChangeDirection = (event: CustomEvent) => {
     setSettings({
       ...settings,
       themeDirection: event.target.value,
     });
   };
 
-  const onChangeDirectionByLang = (lang) => {
+  const onChangeDirectionByLang = (lang: string) => {
     setSettings({
       ...settings,
       themeDirection: lang === "ar" ? "rtl" : "ltr",
@@ -109,7 +117,7 @@ const SettingsProvider = ({ children }) => {
     });
   };
 
-  const onChangeLayout = (event) => {
+  const onChangeLayout = (event: CustomEvent) => {
     setSettings({
       ...settings,
       themeLayout: event.target.value,
@@ -125,7 +133,7 @@ const SettingsProvider = ({ children }) => {
     });
   };
 
-  const onChangeContrast = (event) => {
+  const onChangeContrast = (event: CustomEvent) => {
     setSettings({
       ...settings,
       themeContrast: event.target.value,
@@ -134,7 +142,7 @@ const SettingsProvider = ({ children }) => {
 
   // Color
 
-  const onChangeColor = (event) => {
+  const onChangeColor = (event: CustomEvent) => {
     setSettings({
       ...settings,
       themeColorPresets: event.target.value,
