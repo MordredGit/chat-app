@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/theme/overrides/Accordion.js", "src/theme/overrides/Accordion.js", "src/theme/typography.ts"],
+  "include": ["**/*.d.ts", "**/*.ts", "**/*.tsx", "src/theme/overrides/Accordion.js", "src/theme/overrides/Accordion.js", "src/theme/typography.ts"],
   "exclude": ["node_modules"]
 }
