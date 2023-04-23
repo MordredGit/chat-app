@@ -68,7 +68,7 @@ const DashboardLayout = () => {
   // const isLightMode = theme.palette.mode === "light";
 
   return (
-    <>
+    <Stack direction={"row"}>
       <Box
         p={2}
         sx={{
@@ -104,7 +104,7 @@ const DashboardLayout = () => {
             >
               {Nav_Buttons.map((button) =>
                 button.index === selected ? (
-                  <Fade in timeout={500}>
+                  <Fade in timeout={500} key={button.index}>
                     <Box
                       p={1}
                       sx={{
@@ -112,10 +112,7 @@ const DashboardLayout = () => {
                         borderRadius: 1.5,
                       }}
                     >
-                      <IconButton
-                        sx={{ width: "max-content", color: "white" }}
-                        key={button.index}
-                      >
+                      <IconButton sx={{ width: "max-content", color: "white" }}>
                         {button.icon}
                       </IconButton>
                     </Box>
@@ -143,7 +140,7 @@ const DashboardLayout = () => {
         </Stack>
       </Box>
       <Outlet />
-    </>
+    </Stack>
   );
 };
 
