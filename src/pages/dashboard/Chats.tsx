@@ -13,36 +13,8 @@ import { alpha, styled, Theme, useTheme } from "@mui/material/styles";
 import { ArchiveBox, CircleDashed, MagnifyingGlass } from "phosphor-react";
 import React from "react";
 import { SimpleBarStyle } from "../../components/Scrollbar";
+import StyledBadge from "../../components/StyledBadge";
 import { ChatList } from "../../data";
-
-const StyledBadge = styled(Badge)(({ theme }: { theme: Theme }) => ({
-  "& .MuiBadge-badge": {
-    backgroundColor: "#44B700",
-    color: "44B700",
-    boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
-    "&::after": {
-      position: "absolute",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-      borderRadius: "50%",
-      animation: "ripple 1.2s infinite ease-in-out",
-      border: "1px solid currentColor",
-      content: '""',
-    },
-  },
-  "@keyframes ripple": {
-    "0%": {
-      transform: "scale(.8)",
-      opacity: 1,
-    },
-    "100%": {
-      transform: "scale(2.4)",
-      opacity: 0,
-    },
-  },
-}));
 
 type ChatType = (typeof ChatList)[0];
 
