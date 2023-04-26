@@ -1,18 +1,20 @@
-import { Box, Stack } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
 import React from "react";
+import { Box, Stack } from "@mui/material";
+
 import Footer from "./Footer";
 import Header from "./Header";
+import Message from "./Message";
 
 const Conversation = () => {
-  const theme = useTheme();
-
   return (
     <Stack height={"100%"} maxHeight={"100vh"} width={"auto"}>
       <Header />
 
-      {/* Messages */}
-      <Box sx={{ flexGrow: 1, width: "100%" }}></Box>
+      <Box
+        sx={{ flexGrow: 1, width: "100%", height: "100%", overflowY: "scroll" }}
+      >
+        <Message />
+      </Box>
 
       <Footer />
     </Stack>
