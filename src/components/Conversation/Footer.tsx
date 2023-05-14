@@ -1,14 +1,25 @@
 import {
   Box,
+  Fab,
   IconButton,
   InputAdornment,
   Stack,
   TextField,
+  Tooltip,
 } from "@mui/material";
 import { styled, Theme, useTheme } from "@mui/material/styles";
 import Picker from "@emoji-mart/react";
 import data from "@emoji-mart/data";
-import { LinkSimple, PaperPlaneTilt, Smiley } from "phosphor-react";
+import {
+  Camera,
+  File,
+  Image,
+  LinkSimple,
+  PaperPlaneTilt,
+  Smiley,
+  Sticker,
+  User,
+} from "phosphor-react";
 import React, { useState } from "react";
 
 const StyledInput = styled(TextField)(({ theme }: { theme: Theme }) => ({
@@ -18,34 +29,101 @@ const StyledInput = styled(TextField)(({ theme }: { theme: Theme }) => ({
   },
 }));
 
+const actions = [
+  {
+    color: "#4da5fe",
+    icon: <Image size={24} />,
+    y: 102,
+    title: "Photo/Video",
+  },
+  {
+    color: "#1b8cfe",
+    icon: <Sticker size={24} />,
+    y: 172,
+    title: "Stickers",
+  },
+  {
+    color: "#0172e4",
+    icon: <Camera size={24} />,
+    y: 242,
+    title: "Image",
+  },
+  {
+    color: "#0159b2",
+    icon: <File size={24} />,
+    y: 312,
+    title: "Document",
+  },
+  {
+    color: "#013f7f",
+    icon: <User size={24} />,
+    y: 382,
+    title: "Contact",
+  },
+];
+
 const ChatInput = ({
   setOpenPicker,
 }: {
   setOpenPicker: React.Dispatch<React.SetStateAction<boolean>>;
-}) => (
-  <StyledInput
-    fullWidth
-    variant="filled"
-    placeholder="Write a message..."
-    InputProps={{
-      disableUnderline: true,
-      startAdornment: (
-        <InputAdornment position="start">
-          <IconButton>
-            <LinkSimple />
-          </IconButton>
-        </InputAdornment>
-      ),
-      endAdornment: (
-        <InputAdornment position="end">
-          <IconButton onClick={() => setOpenPicker((prevValue) => !prevValue)}>
-            <Smiley />
-          </IconButton>
-        </InputAdornment>
-      ),
-    }}
-  />
-);
+}) => {
+  const [openActions, setOpenActions] = useState(false);
+  return (
+    <StyledInput
+      fullWidth
+      variant="filled"
+      placeholder="Write a message..."
+      InputProps={{
+        disableUnderline: true,
+        startAdornment: (
+          <Stack sx={{ width: "max-content" }}>
+            <Stack
+              sx={{
+                position: "relative",
+                display: openActions ? "inline-block" : "none",
+              }}
+            >
+              {actions.map((action) => (
+                <Tooltip
+                  key={action.title}
+                  title={action.title}
+                  placement="right"
+                >
+                  <Fab
+                    sx={{
+                      position: "absolute",
+                      top: -action.y,
+                      bgcolor: action.color,
+                    }}
+                    aria-label={action.title}
+                  >
+                    {action.icon}
+                  </Fab>
+                </Tooltip>
+              ))}
+            </Stack>
+            <InputAdornment position="start">
+              <IconButton
+                onClick={() => setOpenActions((prevValue) => !prevValue)}
+              >
+                <LinkSimple />
+              </IconButton>
+            </InputAdornment>
+          </Stack>
+        ),
+        endAdornment: (
+          <InputAdornment position="end">
+            <IconButton
+              onClick={() => setOpenPicker((prevValue) => !prevValue)}
+            >
+              <Smiley />
+            </IconButton>
+          </InputAdornment>
+        ),
+      }}
+    />
+  );
+};
 
 const Footer = () => {
   const theme = useTheme();
