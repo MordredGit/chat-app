@@ -1,14 +1,19 @@
 import React from "react";
 import {
   Box,
+  Button,
+  ButtonBase,
   Divider,
   IconButton,
   Link,
+  Menu,
+  MenuItem,
   Stack,
   Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { DownloadSimple, Image } from "phosphor-react";
+import { DotsThreeVertical, DownloadSimple, Image } from "phosphor-react";
+import { Message_options } from "../../data";
 
 type TimelineMessageType = {
   type: "divider";
@@ -47,7 +52,7 @@ const TextMessage = ({ message }: { message: TextMessageType }) => {
   return (
     <Stack
       direction={"row"}
-      alignItems={"center"}
+      // alignItems={"center"}
       justifyContent={message.incoming ? "start" : "end"}
     >
       <Box
@@ -67,6 +72,7 @@ const TextMessage = ({ message }: { message: TextMessageType }) => {
           {message.message}
         </Typography>
       </Box>
+      <MessageOptions />
     </Stack>
   );
 };
@@ -113,6 +119,7 @@ const MediaMessage = ({ message }: { message: MediaMessageType }) => {
           </Typography>
         </Stack>
       </Box>
+      <MessageOptions />
     </Stack>
   );
 };
@@ -167,6 +174,7 @@ const ReplyMessage = ({ message }: { message: ReplyMessageType }) => {
           </Typography>
         </Stack>
       </Box>
+      <MessageOptions />
     </Stack>
   );
 };
@@ -247,6 +255,7 @@ const LinkMessage = ({ message }: { message: LinkMessageType }) => {
           </Typography>
         </Stack>
       </Box>
+      <MessageOptions />
     </Stack>
   );
 };
@@ -303,7 +312,56 @@ const DocMessage = ({ message }: { message: DocMessageType }) => {
           </Typography>
         </Stack>
       </Box>
+      <MessageOptions />
     </Stack>
+  );
+};
+
+const MessageOptions = () => {
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  return (
+    <>
+      <ButtonBase
+        id="basic-button"
+        aria-controls={open ? "basic-menu" : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? "true" : undefined}
+        onClick={handleClick}
+      >
+        <DotsThreeVertical size={20} />
+      </ButtonBase>
+      {/* <DotsThreeVertical
+        size={20}
+        id="basic-button"
+        aria-controls={open ? "basic-menu" : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? "true" : undefined}
+        // @ts-ignore
+        onClick={handleClick}
+      /> */}
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          "aria-labelledby": "basic-button",
+        }}
+      >
+        <Stack spacing={1} px={1}>
+          {Message_options.map((option) => (
+            <MenuItem onClick={handleClose}>{option.title}</MenuItem>
+          ))}
+        </Stack>
+      </Menu>
+    </>
   );
 };
 
