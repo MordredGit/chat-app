@@ -104,6 +104,7 @@ const ChatInput = ({
             </Stack>
             <InputAdornment position="start">
               <IconButton
+                sx={{ paddingBottom: "20px" }}
                 onClick={() => setOpenActions((prevValue) => !prevValue)}
               >
                 <LinkSimple />
