@@ -33,26 +33,35 @@ const Message = () => {
           (message: ChatMessageType) => {
             switch (message.type) {
               case "divider":
-                return <Timeline message={message} />;
+                return <Timeline key={message.text} message={message} />;
               case "msg":
                 switch (message.subtype) {
                   case "img":
-                    return <MediaMessage message={message} />;
+                    return (
+                      <MediaMessage key={message.id} message={message} />
+                    );
                   case "doc":
-                    return <DocMessage message={message} />; 
+                    return (
+                      <DocMessage key={message.id} message={message} />
+                    );
                   case "link":
-                    return <LinkMessage message={message} />;
+                    return (
+                      <LinkMessage key={message.id} message={message} />
+                    );
                   case "reply":
-                    return <ReplyMessage message={message} />;
+                    return (
+                      <ReplyMessage key={message.id} message={message} />
+                    );
                   default:
                     return (
                       <TextMessage
+                        key={message.id}
                         message={message as unknown as TextMessageType}
                       />
                     );
                 }
             }
-            return null;
+            return <></>;
           }
         )}
       </Stack>

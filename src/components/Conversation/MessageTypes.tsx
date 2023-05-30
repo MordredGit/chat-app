@@ -16,6 +16,7 @@ import { DotsThreeVertical, DownloadSimple, Image } from "phosphor-react";
 import { Message_options } from "../../data";
 
 type TimelineMessageType = {
+  id: string;
   type: "divider";
   text: string;
 };
@@ -39,6 +40,7 @@ const Timeline = ({ message }: { message: TimelineMessageType }) => {
 };
 
 type TextMessageType = {
+  id: string;
   type: "msg";
   subtype: undefined;
   message: string;
@@ -78,6 +80,7 @@ const TextMessage = ({ message }: { message: TextMessageType }) => {
 };
 
 type MediaMessageType = {
+  id: string;
   type: "msg";
   subtype: "img";
   img: string;
@@ -125,6 +128,7 @@ const MediaMessage = ({ message }: { message: MediaMessageType }) => {
 };
 
 type ReplyMessageType = {
+  id: string;
   type: "msg";
   subtype: "reply";
   reply: string;
@@ -180,6 +184,7 @@ const ReplyMessage = ({ message }: { message: ReplyMessageType }) => {
 };
 
 type LinkMessageType = {
+  id: string;
   type: "msg";
   subtype: "link";
   preview: string;
@@ -261,6 +266,7 @@ const LinkMessage = ({ message }: { message: LinkMessageType }) => {
 };
 
 type DocMessageType = {
+  id: string;
   type: "msg";
   subtype: "doc";
   message: string;
@@ -357,7 +363,9 @@ const MessageOptions = () => {
       >
         <Stack spacing={1} px={1}>
           {Message_options.map((option) => (
-            <MenuItem onClick={handleClose}>{option.title}</MenuItem>
+            <MenuItem key={option.title} onClick={handleClose}>
+              {option.title}
+            </MenuItem>
           ))}
         </Stack>
       </Menu>

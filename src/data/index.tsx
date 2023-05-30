@@ -8,17 +8,21 @@ import {
   User,
   Users,
 } from "phosphor-react";
+import { v4 as uuidv4 } from "uuid";
 
 const Profile_Menu = [
   {
+    id: uuidv4(),
     title: "Profile",
     icon: <User />,
   },
   {
+    id: uuidv4(),
     title: "Settings",
     icon: <Gear />,
   },
   {
+    id: uuidv4(),
     title: "Profile",
     icon: <SignOut />,
   },
@@ -131,28 +135,33 @@ const ChatList = [
 
 const Chat_History = [
   {
+    id: uuidv4(),
     type: "msg",
     message: "Hi 👋🏻, How are ya ?",
     incoming: true,
     outgoing: false,
   },
   {
+    id: uuidv4(),
     type: "divider",
     text: "Today",
   },
   {
+    id: uuidv4(),
     type: "msg",
     message: "Hi 👋 Panda, not bad, u ?",
     incoming: false,
     outgoing: true,
   },
   {
+    id: uuidv4(),
     type: "msg",
     message: "Can you send me an abstarct image?",
     incoming: false,
     outgoing: true,
   },
   {
+    id: uuidv4(),
     type: "msg",
     message: "Ya sure, sending you a pic",
     incoming: true,
@@ -160,6 +169,7 @@ const Chat_History = [
   },
 
   {
+    id: uuidv4(),
     type: "msg",
     subtype: "img",
     message: "Here You Go",
@@ -168,6 +178,7 @@ const Chat_History = [
     outgoing: false,
   },
   {
+    id: uuidv4(),
     type: "msg",
     message: "Can you please send this in file format?",
     incoming: false,
@@ -175,6 +186,7 @@ const Chat_History = [
   },
 
   {
+    id: uuidv4(),
     type: "msg",
     subtype: "doc",
     message: "Yes sure, here you go.",
@@ -182,6 +194,7 @@ const Chat_History = [
     outgoing: false,
   },
   {
+    id: uuidv4(),
     type: "msg",
     subtype: "link",
     preview: faker.image.cats(),
@@ -190,6 +203,7 @@ const Chat_History = [
     outgoing: false,
   },
   {
+    id: uuidv4(),
     type: "msg",
     subtype: "reply",
     reply: "This is a reply",
