@@ -95,7 +95,7 @@ const SearchInputBase = styled(InputBase)(({ theme }: { theme: Theme }) => ({
     width: "100%",
   },
 }));
-
+// TODO: Make it slide in and out from left for smaller windows
 const Chats = () => {
   const theme = useTheme();
   const isLightMode = theme.palette.mode === "light";
