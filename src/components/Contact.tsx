@@ -20,7 +20,7 @@ import {
 } from "phosphor-react";
 import React from "react";
 import { useDispatch } from "../redux/store";
-import { ToggleSidebar } from "../redux/slices/app";
+import { ToggleSidebar, UpdateSidebarType } from "../redux/slices/app";
 import { faker } from "@faker-js/faker";
 import AntSwitch from "./AntSwitch";
 
@@ -108,7 +108,12 @@ const Contact = () => {
             justifyContent={"space-between"}
           >
             <Typography variant="subtitle2">Media, Links & Docs</Typography>
-            <Button endIcon={<CaretRight />}>401</Button>
+            <Button
+              endIcon={<CaretRight />}
+              onClick={() => dispatch(UpdateSidebarType("SHARED"))}
+            >
+              401
+            </Button>
           </Stack>
           <Stack direction={"row"} spacing={2} alignItems={"center"}>
             {[1, 2, 3].map((el) => (
@@ -128,7 +133,9 @@ const Contact = () => {
               <Typography variant="subtitle2">Starred Messages</Typography>
             </Stack>
             <IconButton>
-              <CaretRight />
+              <CaretRight
+                onClick={() => dispatch(UpdateSidebarType("STARRED"))}
+              />
             </IconButton>
           </Stack>
           <Divider />
@@ -150,8 +157,8 @@ const Contact = () => {
             <Stack spacing={0.5}>
               <Typography variant="subtitle2">My Gang</Typography>
               <Typography variant="caption">
-                You
                 {/* Create a string with You and 3 more members of the group followed by ... */}
+                You
                 {["Owl", "Parrot", "Rabbit", "Camel", "Horse"].reduce(
                   (members, member, idx) =>
                     idx < 3

@@ -5,6 +5,7 @@ import Conversation from "../../components/Conversation";
 import Chats from "./Chats";
 import Contact from "../../components/Contact";
 import { useSelector } from "../../redux/store";
+import SharedMessages from "../../components/SharedMessages";
 
 const GeneralApp = () => {
   const theme = useTheme();
@@ -25,7 +26,20 @@ const GeneralApp = () => {
         <Conversation />
       </Box>
       {/* Contact */}
-      {sidebar.open && <Contact />}
+      {sidebar.open &&
+        (() => {
+          // TODO: Optimise to an enum possibly
+          switch (sidebar.type) {
+            case "CONTACT":
+              return <Contact />;
+            case "STARRED":
+              return <></>;
+            case "SHARED":
+              return <SharedMessages />;
+            default:
+              break;
+          }
+        })()}
     </Stack>
   );
 };
