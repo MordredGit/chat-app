@@ -18,7 +18,7 @@ const Conversation = () => {
       <Box
         sx={{ flexGrow: 1, width: "100%", height: "100%", overflowY: "scroll" }}
       >
-        <Message />
+        <Message showMenu />
       </Box>
 
       <Footer />

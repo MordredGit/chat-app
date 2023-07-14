@@ -6,6 +6,7 @@ import Chats from "./Chats";
 import Contact from "../../components/Contact";
 import { useSelector } from "../../redux/store";
 import SharedMessages from "../../components/SharedMessages";
+import StarredMessages from "../../components/StarredMessages";
 
 const GeneralApp = () => {
   const theme = useTheme();
@@ -33,7 +34,7 @@ const GeneralApp = () => {
             case "CONTACT":
               return <Contact />;
             case "STARRED":
-              return <></>;
+              return <StarredMessages />;
             case "SHARED":
               return <SharedMessages />;
             default:

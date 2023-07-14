@@ -25,7 +25,7 @@ type ChatMessageType =
   | TextMessageType
   | TimelineMessageType;
 
-const Message = () => {
+const Message = ({ showMenu = false }) => {
   return (
     <Box p={3}>
       <Stack spacing={3}>
@@ -38,25 +38,42 @@ const Message = () => {
                 switch (message.subtype) {
                   case "img":
                     return (
-                      <MediaMessage key={message.id} message={message} />
+                      <MediaMessage
+                        key={message.id}
+                        message={message}
+                        showMenu={showMenu}
+                      />
                     );
                   case "doc":
                     return (
-                      <DocMessage key={message.id} message={message} />
+                      <DocMessage
+                        key={message.id}
+                        message={message}
+                        showMenu={showMenu}
+                      />
                     );
                   case "link":
                     return (
-                      <LinkMessage key={message.id} message={message} />
+                      <LinkMessage
+                        key={message.id}
+                        message={message}
+                        showMenu={showMenu}
+                      />
                     );
                   case "reply":
                     return (
-                      <ReplyMessage key={message.id} message={message} />
+                      <ReplyMessage
+                        key={message.id}
+                        message={message}
+                        showMenu={showMenu}
+                      />
                     );
                   default:
                     return (
                       <TextMessage
                         key={message.id}
-                        message={message as unknown as TextMessageType}
+                        message={message}
+                        showMenu={showMenu}
                       />
                     );
                 }

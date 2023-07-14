@@ -9,8 +9,8 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import React, { SyntheticEvent, useState } from "react";
-import { UpdateSidebarType } from "../redux/slices/app";
-import { CaretLeft } from "phosphor-react";
+import { ToggleSidebar, UpdateSidebarType } from "../redux/slices/app";
+import { CaretLeft, X } from "phosphor-react";
 import { useDispatch } from "../redux/store";
 import { faker } from "@faker-js/faker";
 import { SHARED_DOCS, SHARED_LINKS } from "../data";
@@ -49,12 +49,16 @@ const SharedMessages = () => {
             direction={"row"}
             sx={{ height: "100%", p: 2 }}
             alignItems={"center"}
+            justifyContent={"space-between"}
             spacing={3}
           >
             <IconButton onClick={() => dispatch(UpdateSidebarType("CONTACT"))}>
               <CaretLeft />
             </IconButton>
             <Typography variant="subtitle2">Shared Messages</Typography>
+            <IconButton onClick={() => dispatch(ToggleSidebar())}>
+              <X />
+            </IconButton>
           </Stack>
         </Box>
 
