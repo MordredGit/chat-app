@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Box,
-  Button,
   ButtonBase,
   Divider,
   IconButton,
@@ -48,7 +47,13 @@ type TextMessageType = {
   outgoing: boolean;
 };
 
-const TextMessage = ({ message }: { message: TextMessageType }) => {
+const TextMessage = ({
+  message,
+  showMenu = false,
+}: {
+  message: TextMessageType;
+  showMenu?: boolean;
+}) => {
   const theme = useTheme();
 
   return (
@@ -74,7 +79,7 @@ const TextMessage = ({ message }: { message: TextMessageType }) => {
           {message.message}
         </Typography>
       </Box>
-      <MessageOptions />
+      {showMenu && <MessageOptions />}
     </Stack>
   );
 };
@@ -89,7 +94,13 @@ type MediaMessageType = {
   outgoing: boolean;
 };
 
-const MediaMessage = ({ message }: { message: MediaMessageType }) => {
+const MediaMessage = ({
+  message,
+  showMenu = false,
+}: {
+  message: MediaMessageType;
+  showMenu?: boolean;
+}) => {
   const theme = useTheme();
 
   return (
@@ -122,7 +133,7 @@ const MediaMessage = ({ message }: { message: MediaMessageType }) => {
           </Typography>
         </Stack>
       </Box>
-      <MessageOptions />
+      {showMenu && <MessageOptions />}
     </Stack>
   );
 };
@@ -137,7 +148,13 @@ type ReplyMessageType = {
   outgoing: boolean;
 };
 
-const ReplyMessage = ({ message }: { message: ReplyMessageType }) => {
+const ReplyMessage = ({
+  message,
+  showMenu = false,
+}: {
+  message: ReplyMessageType;
+  showMenu?: boolean;
+}) => {
   const theme = useTheme();
 
   return (
@@ -178,7 +195,7 @@ const ReplyMessage = ({ message }: { message: ReplyMessageType }) => {
           </Typography>
         </Stack>
       </Box>
-      <MessageOptions />
+      {showMenu && <MessageOptions />}
     </Stack>
   );
 };
@@ -193,7 +210,13 @@ type LinkMessageType = {
   outgoing: boolean;
 };
 
-const LinkMessage = ({ message }: { message: LinkMessageType }) => {
+const LinkMessage = ({
+  message,
+  showMenu = false,
+}: {
+  message: LinkMessageType;
+  showMenu?: boolean;
+}) => {
   const theme = useTheme();
 
   return (
@@ -239,15 +262,13 @@ const LinkMessage = ({ message }: { message: LinkMessageType }) => {
               </Typography>
               {/* Link */}
               {
-                //@ts-ignore
                 <Typography
                   variant="subtitle2"
                   color={theme.palette.primary.main}
                   component={Link}
-                  to={"//https://www.youtube.com"}
+                  href={message.preview}
                 >
-                  {/* {message.message} */}
-                  www.youtube.com
+                  {message.preview}
                 </Typography>
               }
             </Stack>
@@ -260,7 +281,7 @@ const LinkMessage = ({ message }: { message: LinkMessageType }) => {
           </Typography>
         </Stack>
       </Box>
-      <MessageOptions />
+      {showMenu && <MessageOptions />}
     </Stack>
   );
 };
@@ -274,7 +295,13 @@ type DocMessageType = {
   outgoing: boolean;
 };
 
-const DocMessage = ({ message }: { message: DocMessageType }) => {
+const DocMessage = ({
+  message,
+  showMenu = false,
+}: {
+  message: DocMessageType;
+  showMenu?: boolean;
+}) => {
   const theme = useTheme();
 
   return (
@@ -318,7 +345,7 @@ const DocMessage = ({ message }: { message: DocMessageType }) => {
           </Typography>
         </Stack>
       </Box>
-      <MessageOptions />
+      {showMenu && <MessageOptions />}
     </Stack>
   );
 };
@@ -343,15 +370,6 @@ const MessageOptions = () => {
       >
         <DotsThreeVertical size={20} />
       </ButtonBase>
-      {/* <DotsThreeVertical
-        size={20}
-        id="basic-button"
-        aria-controls={open ? "basic-menu" : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? "true" : undefined}
-        // @ts-ignore
-        onClick={handleClick}
-      /> */}
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}
