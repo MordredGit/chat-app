@@ -262,13 +262,13 @@ const LinkMessage = ({
               </Typography>
               {/* Link */}
               {
-                //@ts-ignore
                 <Typography
                   variant="subtitle2"
                   color={theme.palette.primary.main}
                   component={Link}
+                  href={message.preview}
                 >
-                  <Link href={message.preview}>{message.preview}</Link>
+                  {message.preview}
                 </Typography>
               }
             </Stack>
