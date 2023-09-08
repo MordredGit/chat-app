@@ -14,14 +14,16 @@ export default function useLocales() {
 
   const currentLang = allLangs.find((_lang) => _lang.value === langStorage) || defaultLang;
 
-  const handleChangeLanguage = (newlang) => {
+  const handleChangeLanguage = (newlang: string) => {
     i18n.changeLanguage(newlang);
-    onChangeDirectionByLang(newlang);
+// ÷    onChangeDirectionByLang(newlang);
+    onChangeDirectionByLang();
+
   };
 
   return {
     onChangeLang: handleChangeLanguage,
-    translate: (text, options) => translate(text, options),
+    translate: (text: string, options: object) => translate(text, options),
     currentLang,
     allLangs,
   };
