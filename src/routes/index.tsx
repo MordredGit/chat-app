@@ -7,6 +7,7 @@ import DashboardLayout from "../layouts/dashboard";
 // config
 import { DEFAULT_PATH } from "../config";
 import LoadingScreen from "../components/LoadingScreen";
+import AuthLayout from "../layouts/auth";
 
 const Loadable =
   (Component: React.ElementType) => (props: JSX.IntrinsicAttributes) => {
@@ -19,6 +20,16 @@ const Loadable =
 
 export default function Router() {
   return useRoutes([
+    {
+      path: "/auth",
+      element: <AuthLayout />,
+      children: [
+        { path: "login", element: <Login /> },
+        { path: "register", element: <Register /> },
+        { path: "reset-password", element: <ResetPassword /> },
+        { path: "new-password", element: <NewPassword /> },
+      ],
+    },
     {
       path: "/",
       element: <DashboardLayout />,
@@ -43,6 +54,22 @@ const GeneralApp = Loadable(
 const Settings = Loadable(
   lazy(
     () => import("../pages/dashboard/Settings")
+  ) as unknown as React.ElementType
+);
+const Login = Loadable(
+  lazy(() => import("../pages/auth/Login")) as unknown as React.ElementType
+);
+const Register = Loadable(
+  lazy(() => import("../pages/auth/Register")) as unknown as React.ElementType
+);
+const ResetPassword = Loadable(
+  lazy(
+    () => import("../pages/auth/ResetPassword")
+  ) as unknown as React.ElementType
+);
+const NewPassword = Loadable(
+  lazy(
+    () => import("../pages/auth/NewPassword")
   ) as unknown as React.ElementType
 );
 const Page404 = Loadable(
