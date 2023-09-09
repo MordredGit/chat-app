@@ -54,7 +54,9 @@ const ChatElement = ({
           )}
           <Stack spacing={0.3}>
             <Typography variant="subtitle2">{name}</Typography>
-            <Typography variant="caption">{msg}</Typography>
+            <Typography variant="caption">
+              {msg.length > 20 ? msg.slice(0, 20) + "..." : msg}
+            </Typography>
           </Stack>
         </Stack>
         <Stack spacing={2} alignItems={"center"}>
