@@ -136,7 +136,7 @@ const Footer = () => {
       sx={{
         width: "100%",
         bgcolor: theme.palette.background.paper, // "#F8FAFF",
-        boxShadow: "0 0 2 rgba(0, 0, 0, 0.25)",
+        boxShadow: "0 0 2px rgba(0, 0, 0, 0.25)",
       }}
     >
       <Stack direction={"row"} alignItems={"center"} spacing={3}>
