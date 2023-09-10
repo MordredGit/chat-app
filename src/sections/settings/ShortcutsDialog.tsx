@@ -5,22 +5,12 @@ import {
   DialogContent,
   DialogTitle,
   Grid,
-  Slide,
   Stack,
   Typography,
 } from "@mui/material";
-import { TransitionProps } from "@mui/material/transitions";
 import React from "react";
 import { KEYBOARD_SHORTCUTS } from "../../data";
-
-const Transition = React.forwardRef(function Transition(
-  props: TransitionProps & {
-    children: React.ReactElement<any, any>;
-  },
-  ref: React.Ref<unknown>
-) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+import { Transition } from "../../components/Transition";
 
 const ShortcutsDialog = ({
   open,
