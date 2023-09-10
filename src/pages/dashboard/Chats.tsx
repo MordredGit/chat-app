@@ -1,102 +1,23 @@
+import React from "react";
 import {
-  Avatar,
-  Badge,
   Box,
   Button,
   Divider,
   IconButton,
-  InputBase,
   Stack,
   Typography,
 } from "@mui/material";
-import { alpha, styled, Theme, useTheme } from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
 import { ArchiveBox, CircleDashed, MagnifyingGlass } from "phosphor-react";
-import React from "react";
+import {
+  Search,
+  SearchIconWrapper,
+  SearchInputBase,
+} from "../../components/Search";
 import { SimpleBarStyle } from "../../components/Scrollbar";
-import StyledBadge from "../../components/StyledBadge";
 import { ChatList } from "../../data";
+import ChatElement from "../../components/ChatElement";
 
-type ChatType = (typeof ChatList)[0];
-
-const ChatElement = ({
-  id,
-  img,
-  name,
-  msg,
-  time,
-  unread,
-  online,
-}: ChatType) => {
-  const theme = useTheme();
-
-  return (
-    <Box
-      sx={{
-        width: "100%",
-        height: 75,
-        borderRadius: 1,
-        backgroundColor: theme.palette.background.default,
-      }}
-      p={2}
-    >
-      <Stack direction={"row"} justifyContent={"space-between"}>
-        <Stack direction={"row"} spacing={2}>
-          {online ? (
-            <StyledBadge
-              overlap="circular"
-              anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-              variant="dot"
-            >
-              <Avatar src={img} alt="user avatar" />
-            </StyledBadge>
-          ) : (
-            <Avatar src={img} alt="user avatar" />
-          )}
-          <Stack spacing={0.3}>
-            <Typography variant="subtitle2">{name}</Typography>
-            <Typography variant="caption">
-              {msg.length > 20 ? msg.slice(0, 20) + "..." : msg}
-            </Typography>
-          </Stack>
-        </Stack>
-        <Stack spacing={2} alignItems={"center"}>
-          <Typography variant="caption" sx={{ fontWeight: 600 }}>
-            {time}
-          </Typography>
-          <Badge color="primary" badgeContent={unread} />
-        </Stack>
-      </Stack>
-    </Box>
-  );
-};
-
-const Search = styled("div")(({ theme }: { theme: Theme }) => ({
-  position: "relative",
-  borderRadius: 20,
-  backgroundColor: alpha(theme.palette.background.default, 1),
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: "100%",
-}));
-
-const SearchIconWrapper = styled("div")(({ theme }: { theme: Theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-
-const SearchInputBase = styled(InputBase)(({ theme }: { theme: Theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    width: "100%",
-  },
-}));
 // TODO: Make it slide in and out from left for smaller windows
 const Chats = () => {
   const theme = useTheme();
@@ -158,8 +79,6 @@ const Chats = () => {
               {ChatList.filter((chat) => chat.pinned).map((chat) => (
                 <ChatElement key={chat.id} {...chat} />
               ))}
-            </Stack>
-            <Stack spacing={2.4}>
               <Typography variant="subtitle2" sx={{ color: "#676767" }}>
                 All Chats
               </Typography>

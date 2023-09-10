@@ -1,6 +1,7 @@
 import { faker } from "@faker-js/faker";
 import {
   ChatCircleDots,
+  Chats,
   Gear,
   GearSix,
   Phone,
@@ -32,14 +33,22 @@ const Nav_Buttons = [
   {
     index: 0,
     icon: <ChatCircleDots />,
+    to: "/app",
   },
   {
     index: 1,
-    icon: <Users />,
+    icon: <Chats />,
+    to: "/group",
   },
   {
     index: 2,
+    icon: <Users />,
+    to: "/app",
+  },
+  {
+    index: 3,
     icon: <Phone />,
+    to: "/call",
   },
 ];
 

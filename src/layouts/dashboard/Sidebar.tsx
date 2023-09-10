@@ -18,6 +18,7 @@ import { Gear } from "phosphor-react";
 import { faker } from "@faker-js/faker";
 import useSettings from "../../hooks/useSettings";
 import AntSwitch from "../../components/AntSwitch";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   const theme = useTheme();
@@ -83,19 +84,23 @@ const Sidebar = () => {
                   </Box>
                 </Fade>
               ) : (
-                <IconButton
-                  sx={{ width: "max-content" }}
-                  key={button.index}
-                  onClick={() => setSelected(button.index)}
-                >
-                  {button.icon}
-                </IconButton>
+                <Link to={button.to}>
+                  <IconButton
+                    sx={{ width: "max-content" }}
+                    key={button.index}
+                    onClick={() => setSelected(button.index)}
+                  >
+                    {button.icon}
+                  </IconButton>
+                </Link>
               )
             )}
             <Divider sx={{ width: "48px" }} />
-            <IconButton>
-              <Gear />
-            </IconButton>
+            <Link to={"/settings"}>
+              <IconButton>
+                <Gear />
+              </IconButton>
+            </Link>
           </Stack>
         </Stack>
         <Stack p={2} alignItems="center" spacing={4}>
