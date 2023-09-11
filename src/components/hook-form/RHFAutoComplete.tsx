@@ -1,6 +1,6 @@
 import { Autocomplete, InputProps, TextField } from "@mui/material";
 import React, { ReactNode } from "react";
-import { useFormContext, Controller, FieldError } from "react-hook-form";
+import { useFormContext, Controller } from "react-hook-form";
 
 const RHFAutoComplete = ({
   name,

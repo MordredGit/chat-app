@@ -1,23 +1,17 @@
-import React, { useState } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import React from "react";
 import {
   Alert,
   Button,
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
-  IconButton,
-  InputAdornment,
-  Link,
   Stack,
 } from "@mui/material";
 import { Transition } from "../../components/Transition";
 
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Eye, EyeClosed } from "phosphor-react";
 import { useForm } from "react-hook-form";
 import { FormProvider, RHFTextField } from "../../components/hook-form";
 import RHFAutoComplete from "../../components/hook-form/RHFAutoComplete";
@@ -25,7 +19,6 @@ import RHFAutoComplete from "../../components/hook-form/RHFAutoComplete";
 const MEMBERS = ["AAAAA", "BBBBB", "CCCCC"];
 
 const CreateGroupForm = () => {
-  const [showPassword, setshowPassword] = useState(false);
   const CreateGroupSchema = Yup.object().shape({
     title: Yup.string().required("Title is required"),
     members: Yup.array().min(2, "Must have atleast 2 members"),
@@ -44,10 +37,9 @@ const CreateGroupForm = () => {
 
   const {
     reset,
-    watch,
     setError,
     handleSubmit,
-    formState: { isSubmitting, isSubmitSuccessful, isValid, errors },
+    formState: { errors },
   } = methods;
 
   const onSubmit = async (data: object) => {
