@@ -1,12 +1,11 @@
-import React, { useEffect } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import React from "react";
 
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import FormProvider from "../../components/hook-form/FormProvider";
 import { useForm } from "react-hook-form";
-import { Alert, Button, Link, Stack } from "@mui/material";
+import { Alert, Button, Stack } from "@mui/material";
 import { RHFTextField } from "../../components/hook-form";
 
 const ResetPasswordForm = () => {
@@ -30,7 +29,7 @@ const ResetPasswordForm = () => {
     reset,
     setError,
     handleSubmit,
-    formState: { isSubmitting, isSubmitSuccessful, errors },
+    formState: { errors },
   } = methods;
 
   const onSubmit = async () => {

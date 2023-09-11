@@ -9,7 +9,6 @@ import {
   Button,
   IconButton,
   InputAdornment,
-  Link,
   Stack,
 } from "@mui/material";
 import { RHFTextField } from "../../components/hook-form";
@@ -43,7 +42,7 @@ const RegisterForm = () => {
     reset,
     setError,
     handleSubmit,
-    formState: { isSubmitting, isSubmitSuccessful, errors },
+    formState: { errors },
   } = methods;
 
   const onSubmit = async () => {

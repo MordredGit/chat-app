@@ -1,6 +1,6 @@
 import { InputProps, TextField } from "@mui/material";
 import React, { ReactNode } from "react";
-import { useFormContext, Controller, FieldError } from "react-hook-form";
+import { useFormContext, Controller } from "react-hook-form";
 
 const RHFTextField = ({
   name,
@@ -24,9 +24,7 @@ const RHFTextField = ({
     <Controller
       name={name}
       control={control}
-      render={({
-        field: { ref, ...field },
-      }) => {
+      render={({ field: { ref, ...field } }) => {
         return (
           <TextField
             {...field}
