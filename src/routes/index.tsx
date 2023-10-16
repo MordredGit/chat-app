@@ -39,6 +39,7 @@ export default function Router() {
         { path: "settings", element: <Settings /> },
         { path: "group", element: <Group /> },
         { path: "call", element: <Call /> },
+        { path: "profile", element: <Profile /> },
 
         { path: "404", element: <Page404 /> },
         { path: "*", element: <Navigate to="/404" replace /> },
@@ -79,6 +80,11 @@ const NewPassword = Loadable(
 );
 const Call = Loadable(
   lazy(() => import("../pages/dashboard/Call")) as unknown as React.ElementType
+);
+const Profile = Loadable(
+  lazy(
+    () => import("../pages/dashboard/Profile")
+  ) as unknown as React.ElementType
 );
 const Page404 = Loadable(
   lazy(() => import("../pages/Page404")) as unknown as React.ElementType

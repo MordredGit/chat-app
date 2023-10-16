@@ -15,7 +15,7 @@ const RHFTextField = ({
   label?: string;
   type?: React.InputHTMLAttributes<unknown>["type"];
   InputProps?: Partial<InputProps>;
-} & object) => {
+} & React.ComponentProps<typeof TextField>) => {
   const {
     control,
     formState: { errors },
