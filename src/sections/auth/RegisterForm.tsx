@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -59,8 +59,6 @@ const RegisterForm = () => {
       }
     }
   };
-
-  useEffect(() => console.log(errors), [errors]);
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>

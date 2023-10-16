@@ -133,17 +133,19 @@ const Sidebar = () => {
           >
             <Stack spacing={1} px={1}>
               {Profile_Menu.map((option) => (
-                <MenuItem key={option.id} onClick={handleClose}>
-                  <Stack
-                    sx={{ width: 100 }}
-                    direction={"row"}
-                    alignItems={"center"}
-                    justifyContent={"space-between"}
-                  >
-                    <span>{option.title}</span>
-                    {option.icon}
-                  </Stack>
-                </MenuItem>
+                <Link key={option.id} to={option.to} style={{ all: "unset" }}>
+                  <MenuItem onClick={handleClose}>
+                    <Stack
+                      sx={{ width: 100 }}
+                      direction={"row"}
+                      alignItems={"center"}
+                      justifyContent={"space-between"}
+                    >
+                      <span>{option.title}</span>
+                      {option.icon}
+                    </Stack>
+                  </MenuItem>
+                </Link>
               ))}
             </Stack>
           </Menu>

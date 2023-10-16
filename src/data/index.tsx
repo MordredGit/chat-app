@@ -16,16 +16,19 @@ const Profile_Menu = [
     id: uuidv4(),
     title: "Profile",
     icon: <User />,
+    to: "/profile",
   },
   {
     id: uuidv4(),
     title: "Settings",
     icon: <Gear />,
+    to: "/settings",
   },
   {
     id: uuidv4(),
-    title: "Profile",
+    title: "Sign Out",
     icon: <SignOut />,
+    to: "/auth/sign-out",
   },
 ];
 

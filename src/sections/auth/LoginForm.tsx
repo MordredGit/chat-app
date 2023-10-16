@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 
 import * as Yup from "yup";
@@ -58,8 +58,6 @@ const LoginForm = () => {
       }
     }
   };
-
-  useEffect(() => console.log(errors), [errors]);
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
