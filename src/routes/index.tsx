@@ -21,6 +21,10 @@ const Loadable =
 export default function Router() {
   return useRoutes([
     {
+      path: "/auth/logout",
+      element: <Logout />,
+    },
+    {
       path: "/auth",
       element: <AuthLayout />,
       children: [
@@ -64,6 +68,9 @@ const Settings = Loadable(
 );
 const Login = Loadable(
   lazy(() => import("../pages/auth/Login")) as unknown as React.ElementType
+);
+const Logout = Loadable(
+  lazy(() => import("../pages/auth/Logout")) as unknown as React.ElementType
 );
 const Register = Loadable(
   lazy(() => import("../pages/auth/Register")) as unknown as React.ElementType

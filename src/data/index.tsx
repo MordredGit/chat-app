@@ -28,7 +28,7 @@ const Profile_Menu = [
     id: uuidv4(),
     title: "Sign Out",
     icon: <SignOut />,
-    to: "/auth/sign-out",
+    to: "/auth/logout",
   },
 ];
 
