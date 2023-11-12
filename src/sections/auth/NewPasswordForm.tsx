@@ -14,8 +14,14 @@ import {
 } from "@mui/material";
 import { RHFTextField } from "../../components/hook-form";
 import { Eye, EyeClosed } from "phosphor-react";
+import { useDispatch } from "../../redux/store";
+import { ResetPassword } from "../../redux/slices/auth";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const NewPasswordForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [queryParameters] = useSearchParams();
   const [showPassword, setshowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -46,9 +52,17 @@ const NewPasswordForm = () => {
     formState: { errors },
   } = methods;
 
-  const onSubmit = async () => {
+  const onSubmit = async (data: typeof defaultValues) => {
     try {
       // Submit logic to backend
+      dispatch(
+        ResetPassword({
+          password: data.password,
+          resetToken: queryParameters.get("token")!,
+        })
+      )
+        .then(() => navigate("/auth/login"))
+        .catch((err) => console.log(err));
     } catch (err) {
       if (err instanceof Error) {
         console.error("Error while submitting: ", err);
@@ -100,6 +114,7 @@ const NewPasswordForm = () => {
           }}
         />
         <Button
+          type="submit"
           fullWidth
           color="inherit"
           size="large"
