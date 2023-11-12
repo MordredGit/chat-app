@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { dispatch } from "../store";
+import { dispatch as storeDispatch } from "../store";
 
 export type SidebarType = "CONTACT" | "STARRED" | "SHARED";
 
@@ -30,9 +30,11 @@ const slice = createSlice({
 export default slice.reducer;
 
 export function ToggleSidebar() {
-  return async () => dispatch(slice.actions.toggleSidebar());
+  return async (dispatch: typeof storeDispatch, getState: any) =>
+    dispatch(slice.actions.toggleSidebar());
 }
 
 export function UpdateSidebarType(type: SidebarType) {
-  return async () => dispatch(slice.actions.updateSidebarType({ type }));
+  return async (dispatch: typeof storeDispatch, getState: any) =>
+    dispatch(slice.actions.updateSidebarType({ type }));
 }

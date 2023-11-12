@@ -16,8 +16,11 @@ import {
 } from "@mui/material";
 import { RHFTextField } from "../../components/hook-form";
 import { Eye, EyeClosed } from "phosphor-react";
+import { useDispatch } from "../../redux/store";
+import { LogInUser } from "../../redux/slices/auth";
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
   const [showPassword, setshowPassword] = useState(false);
   const LoginSchema = Yup.object().shape({
     email: Yup.string()
@@ -44,9 +47,10 @@ const LoginForm = () => {
     formState: { errors },
   } = methods;
 
-  const onSubmit = async () => {
+  const onSubmit = async (data: typeof defaultValues) => {
     try {
       // Submit logic to backend
+      dispatch(LogInUser(data));
     } catch (err) {
       if (err instanceof Error) {
         console.error("Error while submitting: ", err);
@@ -99,6 +103,7 @@ const LoginForm = () => {
         </Link>
       </Stack>
       <Button
+        type="submit"
         fullWidth
         color="inherit"
         size="large"
