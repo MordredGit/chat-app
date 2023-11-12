@@ -2,11 +2,11 @@ import { Stack } from "@mui/material";
 import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
-
-const isAuthenticated = true;
+import { useSelector } from "../../redux/store";
 
 const DashboardLayout = () => {
-  if (!isAuthenticated) return <Navigate to={"/auth/login"} />;
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  if (!isLoggedIn) return <Navigate to={"/auth/login"} />;
   return (
     <Stack direction={"row"}>
       {/* Sidebar */}
