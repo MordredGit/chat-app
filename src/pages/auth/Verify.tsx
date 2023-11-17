@@ -2,19 +2,19 @@ import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { Link, Stack, Typography } from "@mui/material";
 import { CaretLeft } from "phosphor-react";
-import NewPasswordForm from "../../sections/auth/NewPasswordForm";
+import VerifyForm from "../../sections/auth/VerifyForm";
 
-const NewPassword = () => {
+const Verify = () => {
   return (
     <>
       <Stack spacing={2} sx={{ mb: 5, position: "relative" }}>
         <Typography variant="h3" paragraph>
-          Reset your password?
+          Verify your OTP
         </Typography>
         <Typography sx={{ color: "text.secondary", mb: 5 }}>
-          Please enter your new password.
+          Thanks for signing up! Just one more step. Please verify your otp
         </Typography>
-        <NewPasswordForm />
+        <VerifyForm />
         <Link
           component={RouterLink}
           to={"/auth/login"}
@@ -31,4 +31,4 @@ const NewPassword = () => {
   );
 };
 
-export default NewPassword;
+export default Verify;
