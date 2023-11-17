@@ -32,6 +32,7 @@ export default function Router() {
         { path: "register", element: <Register /> },
         { path: "reset-password", element: <ResetPassword /> },
         { path: "new-password", element: <NewPassword /> },
+        { path: "verify", element: <Verify /> },
       ],
     },
     {
@@ -84,6 +85,9 @@ const NewPassword = Loadable(
   lazy(
     () => import("../pages/auth/NewPassword")
   ) as unknown as React.ElementType
+);
+const Verify = Loadable(
+  lazy(() => import("../pages/auth/Verify")) as unknown as React.ElementType
 );
 const Call = Loadable(
   lazy(() => import("../pages/dashboard/Call")) as unknown as React.ElementType

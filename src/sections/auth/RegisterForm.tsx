@@ -13,8 +13,12 @@ import {
 } from "@mui/material";
 import { RHFTextField } from "../../components/hook-form";
 import { Eye, EyeClosed } from "phosphor-react";
+import { useDispatch } from "../../redux/store";
+import { RegisterUser } from "../../redux/slices/auth";
 
+type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>;
 const RegisterForm = () => {
+  const dispatch = useDispatch();
   const [showPassword, setshowPassword] = useState(false);
   const RegisterSchema = Yup.object().shape({
     firstName: Yup.string().required("First Name is required"),
@@ -45,9 +49,10 @@ const RegisterForm = () => {
     formState: { errors },
   } = methods;
 
-  const onSubmit = async () => {
+  const onSubmit = async (data: Optional<typeof defaultValues, "lastName">) => {
     try {
       // Submit logic to backend
+      dispatch(RegisterUser(data));
     } catch (err) {
       if (err instanceof Error) {
         console.error("Error while submitting: ", err);
@@ -100,6 +105,7 @@ const RegisterForm = () => {
         />
       </Stack>
       <Button
+        type="submit"
         fullWidth
         color="inherit"
         size="large"
