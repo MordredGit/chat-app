@@ -1,7 +1,8 @@
-import { memo } from "react";
+import { memo } from 'react';
+
+import { Box } from '@mui/material';
 // @mui
-import { useTheme } from "@mui/material/styles";
-import { Box } from "@mui/material";
+import { useTheme } from '@mui/material/styles';
 
 // ----------------------------------------------------------------------
 

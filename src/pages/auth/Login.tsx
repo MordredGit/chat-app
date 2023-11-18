@@ -1,8 +1,10 @@
-import { Link, Stack, Typography } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
-import React from "react";
-import AuthSocial from "../../sections/auth/AuthSocial";
-import LoginForm from "../../sections/auth/LoginForm";
+import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
+
+import { Link, Stack, Typography } from '@mui/material';
+
+import AuthSocial from '../../sections/auth/AuthSocial';
+import LoginForm from '../../sections/auth/LoginForm';
 
 const Login = () => {
   return (

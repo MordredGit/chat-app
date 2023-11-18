@@ -1,12 +1,12 @@
-import React, { useCallback } from "react";
+import React, { useCallback } from 'react';
+import { useForm } from 'react-hook-form';
+import * as Yup from 'yup';
 
-import * as Yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Alert, Button, Stack } from '@mui/material';
 
-import FormProvider from "../../components/hook-form/FormProvider";
-import { useForm } from "react-hook-form";
-import { Alert, Button, Stack } from "@mui/material";
-import { RHFTextField } from "../../components/hook-form";
+import { RHFTextField } from '../../components/hook-form';
+import FormProvider from '../../components/hook-form/FormProvider';
 
 const ProfileForm = () => {
   const ProfileSchema = Yup.object().shape({

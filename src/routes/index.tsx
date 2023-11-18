@@ -1,13 +1,12 @@
-import { Suspense, lazy } from "react";
-import { Navigate, useRoutes } from "react-router-dom";
+import { lazy, Suspense } from 'react';
+import { Navigate, useRoutes } from 'react-router-dom';
 
-// layouts
-import DashboardLayout from "../layouts/dashboard";
-
+import LoadingScreen from '../components/LoadingScreen';
 // config
-import { DEFAULT_PATH } from "../config";
-import LoadingScreen from "../components/LoadingScreen";
-import AuthLayout from "../layouts/auth";
+import { DEFAULT_PATH } from '../config';
+import AuthLayout from '../layouts/auth';
+// layouts
+import DashboardLayout from '../layouts/dashboard';
 
 const Loadable =
   (Component: React.ElementType) => (props: JSX.IntrinsicAttributes) => {

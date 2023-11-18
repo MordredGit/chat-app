@@ -1,16 +1,11 @@
+import React from 'react';
+
 import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  Grid,
-  Stack,
-  Typography,
-} from "@mui/material";
-import React from "react";
-import { KEYBOARD_SHORTCUTS } from "../../data";
-import { Transition } from "../../components/Transition";
+    Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, Stack, Typography
+} from '@mui/material';
+
+import { Transition } from '../../components/Transition';
+import { KEYBOARD_SHORTCUTS } from '../../data';
 
 const ShortcutsDialog = ({
   open,

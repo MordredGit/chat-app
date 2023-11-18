@@ -1,27 +1,13 @@
-import { faker } from "@faker-js/faker";
 import {
-  Avatar,
-  Box,
-  Button,
-  Divider,
-  IconButton,
-  Stack,
-  Typography,
-} from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import {
-  Bell,
-  CaretLeft,
-  Image,
-  Info,
-  Key,
-  Keyboard,
-  Lock,
-  Note,
-  PencilCircle,
-} from "phosphor-react";
-import React, { ReactElement, useState } from "react";
-import ShortcutsDialog from "../../sections/settings/ShortcutsDialog";
+    Bell, CaretLeft, Image, Info, Key, Keyboard, Lock, Note, PencilCircle
+} from 'phosphor-react';
+import React, { ReactElement, useState } from 'react';
+
+import { faker } from '@faker-js/faker';
+import { Avatar, Box, Button, Divider, IconButton, Stack, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+
+import ShortcutsDialog from '../../sections/settings/ShortcutsDialog';
 
 type SettingsType = {
   key: number;

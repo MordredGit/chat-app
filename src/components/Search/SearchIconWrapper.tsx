@@ -1,4 +1,4 @@
-import { styled, Theme } from "@mui/material/styles";
+import { styled, Theme } from '@mui/material/styles';
 
 const SearchIconWrapper = styled("div")(({ theme }: { theme: Theme }) => ({
   padding: theme.spacing(0, 2),

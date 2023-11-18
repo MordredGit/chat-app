@@ -1,10 +1,12 @@
-import { Box, IconButton, Stack, Typography } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import React from "react";
-import { ToggleSidebar, UpdateSidebarType } from "../redux/slices/app";
-import { CaretLeft, X } from "phosphor-react";
-import { useDispatch } from "../redux/store";
-import Message from "./Conversation/Message";
+import { CaretLeft, X } from 'phosphor-react';
+import React from 'react';
+
+import { Box, IconButton, Stack, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+
+import { ToggleSidebar, UpdateSidebarType } from '../redux/slices/app';
+import { useDispatch } from '../redux/store';
+import Message from './Conversation/Message';
 
 const StarredMessages = () => {
   const theme = useTheme();

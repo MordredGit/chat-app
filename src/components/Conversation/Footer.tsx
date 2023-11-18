@@ -1,26 +1,12 @@
 import {
-  Box,
-  Fab,
-  IconButton,
-  InputAdornment,
-  Stack,
-  TextField,
-  Tooltip,
-} from "@mui/material";
-import { styled, Theme, useTheme } from "@mui/material/styles";
-import Picker from "@emoji-mart/react";
-import data from "@emoji-mart/data";
-import {
-  Camera,
-  File,
-  Image,
-  LinkSimple,
-  PaperPlaneTilt,
-  Smiley,
-  Sticker,
-  User,
-} from "phosphor-react";
-import React, { useState } from "react";
+    Camera, File, Image, LinkSimple, PaperPlaneTilt, Smiley, Sticker, User
+} from 'phosphor-react';
+import React, { useState } from 'react';
+
+import data from '@emoji-mart/data';
+import Picker from '@emoji-mart/react';
+import { Box, Fab, IconButton, InputAdornment, Stack, TextField, Tooltip } from '@mui/material';
+import { styled, Theme, useTheme } from '@mui/material/styles';
 
 const StyledInput = styled(TextField)(({ theme }: { theme: Theme }) => ({
   "& .MuiInputBase-input": {

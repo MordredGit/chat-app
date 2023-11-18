@@ -1,8 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
-import axiosInstance from "../../utils/axios";
-import { RootReducerState, dispatch as storeDispatch } from "../store";
-import { ShowSnackbar } from "./app";
-import { AlertColor } from "@mui/material";
+import { AlertColor } from '@mui/material';
+import { createSlice } from '@reduxjs/toolkit';
+
+import axiosInstance from '../../utils/axios';
+import { dispatch as storeDispatch, RootReducerState } from '../store';
+import { ShowSnackbar } from './app';
 
 type ReturnType = {
   status: AlertColor;

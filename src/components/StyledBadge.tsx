@@ -1,5 +1,5 @@
-import { Badge } from "@mui/material";
-import { styled, Theme } from "@mui/material/styles";
+import { Badge } from '@mui/material';
+import { styled, Theme } from '@mui/material/styles';
 
 const StyledBadge = styled(Badge)(({ theme }: { theme: Theme }) => ({
   "& .MuiBadge-badge": {

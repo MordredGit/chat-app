@@ -1,11 +1,9 @@
 // provider === component
-import { createContext, ReactNode, useEffect } from "react";
-import { defaultSettings } from "../config";
-import useLocalStorage from "../hooks/useLocalStorage";
-import getColorPresets, {
-  defaultPreset,
-  colorPresets,
-} from "../utils/getColorPresets";
+import { createContext, ReactNode, useEffect } from 'react';
+
+import { defaultSettings } from '../config';
+import useLocalStorage from '../hooks/useLocalStorage';
+import getColorPresets, { colorPresets, defaultPreset } from '../utils/getColorPresets';
 
 type CustomEvent = Event & {
   target: EventTarget & {

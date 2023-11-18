@@ -1,15 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
-import { HelmetProvider } from "react-helmet-async";
-import { Provider as ReduxProvider } from "react-redux";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { HelmetProvider } from 'react-helmet-async';
+import { Provider as ReduxProvider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
-import App from "./App";
+import App from './App';
 // import reportWebVitals from "./reportWebVitals";
-
 // contexts
-import SettingsProvider from "./contexts/SettingsContext";
-import { store } from "./redux/store";
+import SettingsProvider from './contexts/SettingsContext';
+import { store } from './redux/store';
 
 const root = ReactDOM.createRoot(document.getElementById("root") as Element);
 

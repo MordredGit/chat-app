@@ -1,20 +1,15 @@
-import React, { useState } from "react";
-import * as Yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { Eye, EyeClosed } from 'phosphor-react';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import * as Yup from 'yup';
 
-import FormProvider from "../../components/hook-form/FormProvider";
-import { useForm } from "react-hook-form";
-import {
-  Alert,
-  Button,
-  IconButton,
-  InputAdornment,
-  Stack,
-} from "@mui/material";
-import { RHFTextField } from "../../components/hook-form";
-import { Eye, EyeClosed } from "phosphor-react";
-import { useDispatch } from "../../redux/store";
-import { RegisterUser } from "../../redux/slices/auth";
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Alert, Button, IconButton, InputAdornment, Stack } from '@mui/material';
+
+import { RHFTextField } from '../../components/hook-form';
+import FormProvider from '../../components/hook-form/FormProvider';
+import { RegisterUser } from '../../redux/slices/auth';
+import { useDispatch } from '../../redux/store';
 
 type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>;
 const RegisterForm = () => {

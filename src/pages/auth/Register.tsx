@@ -1,8 +1,10 @@
-import React from "react";
-import { Link, Stack, Typography } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
-import AuthSocial from "../../sections/auth/AuthSocial";
-import RegisterForm from "../../sections/auth/RegisterForm";
+import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
+
+import { Link, Stack, Typography } from '@mui/material';
+
+import AuthSocial from '../../sections/auth/AuthSocial';
+import RegisterForm from '../../sections/auth/RegisterForm';
 
 const Register = () => {
   return (

@@ -1,6 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { dispatch as storeDispatch } from "../store";
-import { AlertColor } from "@mui/material";
+import { AlertColor } from '@mui/material';
+import { createSlice } from '@reduxjs/toolkit';
+
+import { dispatch as storeDispatch } from '../store';
 
 export type SidebarType = "CONTACT" | "STARRED" | "SHARED";
 // export type AlertColor = "info" | "error" | "debug";

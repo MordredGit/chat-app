@@ -1,23 +1,14 @@
-import React, { useState } from "react";
-import {
-  Box,
-  Divider,
-  IconButton,
-  Link,
-  Stack,
-  Typography,
-} from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import { MagnifyingGlass, Plus } from "phosphor-react";
-import { SimpleBarStyle } from "../../components/Scrollbar";
-import { ChatList } from "../../data";
-import {
-  Search,
-  SearchIconWrapper,
-  SearchInputBase,
-} from "../../components/Search";
-import ChatElement from "../../components/ChatElement";
-import CreateGroup from "../../sections/main/CreateGroup";
+import { MagnifyingGlass, Plus } from 'phosphor-react';
+import React, { useState } from 'react';
+
+import { Box, Divider, IconButton, Link, Stack, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+
+import ChatElement from '../../components/ChatElement';
+import { SimpleBarStyle } from '../../components/Scrollbar';
+import { Search, SearchIconWrapper, SearchInputBase } from '../../components/Search';
+import { ChatList } from '../../data';
+import CreateGroup from '../../sections/main/CreateGroup';
 
 const Group = () => {
   const theme = useTheme();

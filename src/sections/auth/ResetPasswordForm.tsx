@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import * as Yup from 'yup';
 
-import * as Yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Alert, Button, Stack } from '@mui/material';
 
-import FormProvider from "../../components/hook-form/FormProvider";
-import { useForm } from "react-hook-form";
-import { Alert, Button, Stack } from "@mui/material";
-import { RHFTextField } from "../../components/hook-form";
-import { useDispatch } from "../../redux/store";
-import { ForgotPassword } from "../../redux/slices/auth";
+import { RHFTextField } from '../../components/hook-form';
+import FormProvider from '../../components/hook-form/FormProvider';
+import { ForgotPassword } from '../../redux/slices/auth';
+import { useDispatch } from '../../redux/store';
 
 const ResetPasswordForm = () => {
   const dispatch = useDispatch();

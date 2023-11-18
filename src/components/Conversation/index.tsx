@@ -1,9 +1,10 @@
-import React from "react";
-import { Box, Stack } from "@mui/material";
+import React from 'react';
 
-import Footer from "./Footer";
-import Header from "./Header";
-import Message from "./Message";
+import { Box, Stack } from '@mui/material';
+
+import Footer from './Footer';
+import Header from './Header';
+import Message from './Message';
 
 const Conversation = () => {
   return (

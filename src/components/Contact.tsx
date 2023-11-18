@@ -1,34 +1,17 @@
+import { Bell, CaretRight, Phone, Prohibit, Star, Trash, VideoCamera, X } from 'phosphor-react';
+import React, { useState } from 'react';
+
+import { faker } from '@faker-js/faker';
 import {
-  Avatar,
-  Box,
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Divider,
-  IconButton,
-  Stack,
-  Typography,
-} from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import {
-  Bell,
-  CaretRight,
-  Phone,
-  Prohibit,
-  Star,
-  Trash,
-  VideoCamera,
-  X,
-} from "phosphor-react";
-import React, { useState } from "react";
-import { useDispatch } from "../redux/store";
-import { ToggleSidebar, UpdateSidebarType } from "../redux/slices/app";
-import { faker } from "@faker-js/faker";
-import AntSwitch from "./AntSwitch";
-import { Transition } from "./Transition";
+    Avatar, Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle,
+    Divider, IconButton, Stack, Typography
+} from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+
+import { ToggleSidebar, UpdateSidebarType } from '../redux/slices/app';
+import { useDispatch } from '../redux/store';
+import AntSwitch from './AntSwitch';
+import { Transition } from './Transition';
 
 const BlockDialog = ({
   open,

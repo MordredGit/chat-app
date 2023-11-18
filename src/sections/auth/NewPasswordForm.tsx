@@ -1,22 +1,16 @@
-import React, { useState } from "react";
+import { Eye, EyeClosed } from 'phosphor-react';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import * as Yup from 'yup';
 
-import * as Yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Alert, Button, IconButton, InputAdornment, Stack } from '@mui/material';
 
-import FormProvider from "../../components/hook-form/FormProvider";
-import { useForm } from "react-hook-form";
-import {
-  Alert,
-  Button,
-  IconButton,
-  InputAdornment,
-  Stack,
-} from "@mui/material";
-import { RHFTextField } from "../../components/hook-form";
-import { Eye, EyeClosed } from "phosphor-react";
-import { useDispatch } from "../../redux/store";
-import { ResetPassword } from "../../redux/slices/auth";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { RHFTextField } from '../../components/hook-form';
+import FormProvider from '../../components/hook-form/FormProvider';
+import { ResetPassword } from '../../redux/slices/auth';
+import { useDispatch } from '../../redux/store';
 
 const NewPasswordForm = () => {
   const dispatch = useDispatch();

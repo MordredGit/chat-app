@@ -1,18 +1,12 @@
-import React from "react";
+import { DotsThreeVertical, DownloadSimple, Image } from 'phosphor-react';
+import React from 'react';
+
 import {
-  Box,
-  ButtonBase,
-  Divider,
-  IconButton,
-  Link,
-  Menu,
-  MenuItem,
-  Stack,
-  Typography,
-} from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import { DotsThreeVertical, DownloadSimple, Image } from "phosphor-react";
-import { Message_options } from "../../data";
+    Box, ButtonBase, Divider, IconButton, Link, Menu, MenuItem, Stack, Typography
+} from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+
+import { Message_options } from '../../data';
 
 type TimelineMessageType = {
   id: string;
