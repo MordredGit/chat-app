@@ -1,7 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axiosInstance from "../../utils/axios";
-import { dispatch as storeDispatch } from "../store";
-import { RootState } from "../rootReducer";
+import { RootReducerState, dispatch as storeDispatch } from "../store";
+import { ShowSnackbar } from "./app";
+import { AlertColor } from "@mui/material";
+
+type ReturnType = {
+  status: AlertColor;
+  message: string;
+  token?: string;
+};
 
 const initialState = {
   isLoggedIn: false,
@@ -55,42 +62,70 @@ export function LogInUser({
 }) {
   return async (dispatch: typeof storeDispatch, getState: any) => {
     axiosInstance
-      .post(
+      .post<ReturnType>(
         "/auth/login",
         { email, password },
         { headers: { "Content-Type": "application/json" } }
       )
-      .then((res) =>
+      .then((res) => {
+        if (!res.data.token) {
+          return dispatch(
+            ShowSnackbar({
+              severity: res.data.status,
+              message: "Something went wrong!",
+            })
+          );
+        }
+
         dispatch(
-          slice.actions.signIn({ isLoggedIn: true, token: res.data.token })
-        )
-      )
-      .catch((err) => console.log(err));
+          slice.actions.signIn({ isLoggedIn: true, token: res.data.token! })
+        );
+        dispatch(
+          ShowSnackbar({ severity: res.data.status, message: res.data.message })
+        );
+      })
+      .catch((err) => {
+        dispatch(ShowSnackbar({ severity: "error", message: err.message }));
+      });
   };
 }
 
 export function LogOutUser() {
   return async (dispatch: typeof storeDispatch, getState: any) => {
     dispatch(slice.actions.signOut());
+    dispatch(
+      ShowSnackbar({ severity: "success", message: "Logged out successfully!" })
+    );
   };
 }
 
 export function ForgotPassword({ email }: { email: string }) {
   return async (dispatch: typeof storeDispatch, getState: any) => {
     axiosInstance
-      .post(
+      .post<ReturnType>(
         "/auth/forgot-password",
         { email },
         { headers: { "Content-Type": "application/json" } }
       )
-      .then(
-        (res) => console.log(res)
-
-        // dispatch(
-        //   slice.actions.signIn({ isLoggedIn: true, token: res.data.token })
-        // )
-      )
-      .catch((err) => console.log(err));
+      .then((res) => {
+        dispatch(
+          ShowSnackbar({
+            severity: res.data.status,
+            message: res.data.message,
+          })
+        );
+      })
+      .catch((err) => {
+        dispatch(
+          ShowSnackbar({
+            severity: "error",
+            message: err.message,
+          })
+        );
+      })
+      .finally(() => {
+        if (!getState().auth.error) window.location.href = "/auth/login";
+      });
   };
 }
 
@@ -103,19 +138,24 @@ export function ResetPassword({
 }) {
   return async (dispatch: typeof storeDispatch, getState: any) => {
     axiosInstance
-      .post(
+      .post<ReturnType>(
         "/auth/reset-password",
         { resetToken, password },
         { headers: { "Content-Type": "application/json" } }
       )
-      .then(
-        (res) => console.log(res)
-
-        // dispatch(
-        //   slice.actions.signIn({ isLoggedIn: true, token: res.data.token })
-        // )
-      )
-      .catch((err) => console.log(err));
+      .then((res) => {
+        dispatch(
+          ShowSnackbar({ severity: res.data.status, message: res.data.message })
+        );
+        if (res.data.status !== "success" && res.data.token) {
+          dispatch(
+            slice.actions.signIn({ isLoggedIn: true, token: res.data.token })
+          );
+        }
+      })
+      .catch((err) => {
+        dispatch(ShowSnackbar({ severity: "error", message: err.message }));
+      });
   };
 }
 
@@ -125,7 +165,10 @@ export function RegisterUser(data: {
   email: string;
   password: string;
 }) {
-  return async (dispatch: typeof storeDispatch, getState: () => RootState) => {
+  return async (
+    dispatch: typeof storeDispatch,
+    getState: () => RootReducerState
+  ) => {
     dispatch(
       slice.actions.updateIsLoading({
         isLoading: true,
@@ -137,7 +180,7 @@ export function RegisterUser(data: {
       })
     );
     axiosInstance
-      .post(
+      .post<ReturnType>(
         "/auth/register",
         { ...data },
         {
@@ -145,8 +188,6 @@ export function RegisterUser(data: {
         }
       )
       .then((res) => {
-        console.log(res);
-
         dispatch(
           slice.actions.updateRegisterEmail({
             isLoggedIn: true,
@@ -164,9 +205,14 @@ export function RegisterUser(data: {
             error: "",
           })
         );
+        dispatch(
+          ShowSnackbar({
+            severity: res.data.status,
+            message: res.data.message,
+          })
+        );
       })
       .catch((err) => {
-        console.log(err);
         dispatch(
           slice.actions.updateIsLoading({
             isLoading: false,
@@ -175,6 +221,12 @@ export function RegisterUser(data: {
         dispatch(
           slice.actions.updateError({
             error: err,
+          })
+        );
+        dispatch(
+          ShowSnackbar({
+            severity: "error",
+            message: err.message,
           })
         );
       })
@@ -187,16 +239,31 @@ export function RegisterUser(data: {
 export function VerifyEmail(data: { otp: string; email: string }) {
   return async (dispatch: typeof storeDispatch, getState: any) => {
     axiosInstance
-      .post("/auth/verify-otp", data, {
+      .post<ReturnType>("/auth/verify-otp", data, {
         headers: { "Content-Type": "application/json" },
       })
       .then((res) => {
-        console.log(res);
+        // if (!res.data.token) console.log("No token received!!");
 
+        if (res.data.status === "success" && res.data.token) {
+          dispatch(
+            slice.actions.signIn({ isLoggedIn: true, token: res.data.token })
+          );
+        }
         dispatch(
-          slice.actions.signIn({ isLoggedIn: true, token: res.data.token })
+          ShowSnackbar({
+            severity: res.data.status,
+            message: res.data.message,
+          })
         );
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        dispatch(
+          ShowSnackbar({
+            severity: "error",
+            message: err.message,
+          })
+        );
+      });
   };
 }

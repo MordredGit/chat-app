@@ -10,7 +10,7 @@ import { rootPersistConfig, rootReducer } from "./rootReducer";
 type GetReducerT<C extends Reducer<any>> = C extends Reducer<infer T>
   ? T
   : unknown;
-type RootReducerState = GetReducerT<typeof rootReducer>;
+export type RootReducerState = GetReducerT<typeof rootReducer>;
 
 const store = configureStore({
   reducer: persistReducer(rootPersistConfig, rootReducer),

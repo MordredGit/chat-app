@@ -6,7 +6,6 @@ import { Link, useNavigate } from "react-router-dom";
 const Logout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // console.log("In logout");
 
   useEffect(() => {
     dispatch(LogOutUser())
