@@ -1,12 +1,14 @@
-import { Box, Stack } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import React from "react";
-import Conversation from "../../components/Conversation";
-import Chats from "./Chats";
-import Contact from "../../components/Contact";
-import { useSelector } from "../../redux/store";
-import SharedMessages from "../../components/SharedMessages";
-import StarredMessages from "../../components/StarredMessages";
+import React from 'react';
+
+import { Box, Stack } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+
+import Contact from '../../components/Contact';
+import Conversation from '../../components/Conversation';
+import SharedMessages from '../../components/SharedMessages';
+import StarredMessages from '../../components/StarredMessages';
+import { useSelector } from '../../redux/store';
+import Chats from './Chats';
 
 const GeneralApp = () => {
   const theme = useTheme();

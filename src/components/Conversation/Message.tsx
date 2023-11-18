@@ -1,21 +1,12 @@
-import React from "react";
-import { Box, Stack } from "@mui/material";
+import React from 'react';
 
-import { Chat_History } from "../../data";
+import { Box, Stack } from '@mui/material';
+
+import { Chat_History } from '../../data';
 import {
-  DocMessage,
-  DocMessageType,
-  LinkMessage,
-  LinkMessageType,
-  MediaMessage,
-  MediaMessageType,
-  ReplyMessage,
-  ReplyMessageType,
-  TextMessage,
-  TextMessageType,
-  Timeline,
-  TimelineMessageType,
-} from "./MessageTypes";
+    DocMessage, DocMessageType, LinkMessage, LinkMessageType, MediaMessage, MediaMessageType,
+    ReplyMessage, ReplyMessageType, TextMessage, TextMessageType, Timeline, TimelineMessageType
+} from './MessageTypes';
 
 type ChatMessageType =
   | DocMessageType

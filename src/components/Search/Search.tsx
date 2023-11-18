@@ -1,4 +1,4 @@
-import { alpha, styled, Theme } from "@mui/material/styles";
+import { alpha, styled, Theme } from '@mui/material/styles';
 
 const Search = styled("div")(({ theme }: { theme: Theme }) => ({
   position: "relative",

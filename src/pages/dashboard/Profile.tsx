@@ -1,9 +1,11 @@
-import React, { ReactElement, useState } from "react";
-import { faker } from "@faker-js/faker";
-import { Avatar, Box, IconButton, Stack, Typography } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import { CaretLeft } from "phosphor-react";
-import ProfileForm from "../../sections/main/ProfileForm";
+import { CaretLeft } from 'phosphor-react';
+import React, { ReactElement, useState } from 'react';
+
+import { faker } from '@faker-js/faker';
+import { Avatar, Box, IconButton, Stack, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+
+import ProfileForm from '../../sections/main/ProfileForm';
 
 const Profile = () => {
   const theme = useTheme();

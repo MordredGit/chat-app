@@ -1,15 +1,7 @@
-import { faker } from "@faker-js/faker";
-import {
-  ChatCircleDots,
-  Chats,
-  Gear,
-  GearSix,
-  Phone,
-  SignOut,
-  User,
-  Users,
-} from "phosphor-react";
-import { v4 as uuidv4 } from "uuid";
+import { ChatCircleDots, Chats, Gear, GearSix, Phone, SignOut, User, Users } from 'phosphor-react';
+import { v4 as uuidv4 } from 'uuid';
+
+import { faker } from '@faker-js/faker';
 
 const Profile_Menu = [
   {

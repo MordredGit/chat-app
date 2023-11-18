@@ -1,25 +1,16 @@
+import { CaretLeft, X } from 'phosphor-react';
+import React, { SyntheticEvent, useState } from 'react';
+
+import { faker } from '@faker-js/faker';
+import { Box, Grid, IconButton, Stack, Tab, Tabs, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+
+import { SHARED_DOCS, SHARED_LINKS } from '../data';
+import { ToggleSidebar, UpdateSidebarType } from '../redux/slices/app';
+import { useDispatch } from '../redux/store';
 import {
-  Box,
-  Grid,
-  IconButton,
-  Stack,
-  Tab,
-  Tabs,
-  Typography,
-} from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import React, { SyntheticEvent, useState } from "react";
-import { ToggleSidebar, UpdateSidebarType } from "../redux/slices/app";
-import { CaretLeft, X } from "phosphor-react";
-import { useDispatch } from "../redux/store";
-import { faker } from "@faker-js/faker";
-import { SHARED_DOCS, SHARED_LINKS } from "../data";
-import {
-  DocMessage,
-  DocMessageType,
-  LinkMessage,
-  LinkMessageType,
-} from "./Conversation/MessageTypes";
+    DocMessage, DocMessageType, LinkMessage, LinkMessageType
+} from './Conversation/MessageTypes';
 
 type ValueType = "DOCS" | "LINKS" | "IMGS";
 

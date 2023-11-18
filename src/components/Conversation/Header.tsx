@@ -1,19 +1,13 @@
-import React from "react";
-import {
-  Avatar,
-  Box,
-  Divider,
-  IconButton,
-  Stack,
-  Typography,
-} from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import { CaretDown, MagnifyingGlass, Phone, VideoCamera } from "phosphor-react";
-import { faker } from "@faker-js/faker";
+import { CaretDown, MagnifyingGlass, Phone, VideoCamera } from 'phosphor-react';
+import React from 'react';
 
-import StyledBadge from "../StyledBadge";
-import { ToggleSidebar } from "../../redux/slices/app";
-import { useDispatch } from "../../redux/store";
+import { faker } from '@faker-js/faker';
+import { Avatar, Box, Divider, IconButton, Stack, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+
+import { ToggleSidebar } from '../../redux/slices/app';
+import { useDispatch } from '../../redux/store';
+import StyledBadge from '../StyledBadge';
 
 const Header = () => {
   const theme = useTheme();

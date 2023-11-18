@@ -1,23 +1,14 @@
-import React, { useState } from "react";
-import {
-  Box,
-  Divider,
-  IconButton,
-  Link,
-  Stack,
-  Typography,
-} from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import { MagnifyingGlass, Phone } from "phosphor-react";
-import { SimpleBarStyle } from "../../components/Scrollbar";
-import { CallList } from "../../data";
-import {
-  Search,
-  SearchIconWrapper,
-  SearchInputBase,
-} from "../../components/Search";
-import StartCall from "../../sections/main/StartCall";
-import CallLogElement from "../../components/CallLogElement";
+import { MagnifyingGlass, Phone } from 'phosphor-react';
+import React, { useState } from 'react';
+
+import { Box, Divider, IconButton, Link, Stack, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+
+import CallLogElement from '../../components/CallLogElement';
+import { SimpleBarStyle } from '../../components/Scrollbar';
+import { Search, SearchIconWrapper, SearchInputBase } from '../../components/Search';
+import { CallList } from '../../data';
+import StartCall from '../../sections/main/StartCall';
 
 const Call = () => {
   const theme = useTheme();

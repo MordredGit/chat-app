@@ -1,11 +1,13 @@
-import * as React from "react";
-import Router from "./routes";
-import ThemeProvider from "./theme";
-import ThemeSettings from "./components/settings";
-import MuiAlert, { AlertProps } from "@mui/material/Alert";
-import { Snackbar } from "@mui/material";
-import { useDispatch, useSelector } from "./redux/store";
-import { HideSnackbar } from "./redux/slices/app";
+import * as React from 'react';
+
+import { Snackbar } from '@mui/material';
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
+
+import ThemeSettings from './components/settings';
+import { HideSnackbar } from './redux/slices/app';
+import { useDispatch, useSelector } from './redux/store';
+import Router from './routes';
+import ThemeProvider from './theme';
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,

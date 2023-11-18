@@ -1,21 +1,12 @@
-import React from "react";
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  Stack,
-} from "@mui/material";
-import { Transition } from "../../components/Transition";
+import { MagnifyingGlass } from 'phosphor-react';
+import React from 'react';
 
-import { MagnifyingGlass } from "phosphor-react";
-import {
-  Search,
-  SearchIconWrapper,
-  SearchInputBase,
-} from "../../components/Search";
-import { CallList } from "../../data";
-import CallElement from "../../components/CallElement";
+import { Button, Dialog, DialogActions, DialogContent, Stack } from '@mui/material';
+
+import CallElement from '../../components/CallElement';
+import { Search, SearchIconWrapper, SearchInputBase } from '../../components/Search';
+import { Transition } from '../../components/Transition';
+import { CallList } from '../../data';
 
 const StartCall = ({
   open,

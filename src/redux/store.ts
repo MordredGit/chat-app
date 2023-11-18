@@ -1,11 +1,11 @@
-import { Reducer, configureStore } from "@reduxjs/toolkit";
 import {
-  TypedUseSelectorHook,
-  useDispatch as useAppDispatch,
-  useSelector as useAppSelector,
-} from "react-redux";
-import { persistStore, persistReducer } from "redux-persist";
-import { rootPersistConfig, rootReducer } from "./rootReducer";
+    TypedUseSelectorHook, useDispatch as useAppDispatch, useSelector as useAppSelector
+} from 'react-redux';
+import { persistReducer, persistStore } from 'redux-persist';
+
+import { configureStore, Reducer } from '@reduxjs/toolkit';
+
+import { rootPersistConfig, rootReducer } from './rootReducer';
 
 type GetReducerT<C extends Reducer<any>> = C extends Reducer<infer T>
   ? T

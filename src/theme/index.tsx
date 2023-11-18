@@ -1,19 +1,19 @@
-import { ReactNode, useMemo } from "react";
+import { ReactNode, useMemo } from 'react';
+
 // @mui
-import { CssBaseline } from "@mui/material";
+import { CssBaseline } from '@mui/material';
 import {
-  createTheme,
-  ThemeProvider as MUIThemeProvider,
-  StyledEngineProvider,
-} from "@mui/material/styles";
+    createTheme, StyledEngineProvider, ThemeProvider as MUIThemeProvider
+} from '@mui/material/styles';
+
 // hooks
-import useSettings from "../hooks/useSettings";
+import useSettings from '../hooks/useSettings';
+import breakpoints from './breakpoints';
+import componentsOverride from './overrides';
 //
-import palette from "./palette";
-import typography from "./typography";
-import breakpoints from "./breakpoints";
-import componentsOverride from "./overrides";
-import shadows, { customShadows } from "./shadows";
+import palette from './palette';
+import shadows, { customShadows } from './shadows';
+import typography from './typography';
 
 // ----------------------------------------------------------------------
 

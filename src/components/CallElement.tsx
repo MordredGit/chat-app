@@ -1,9 +1,11 @@
-import React from "react";
-import { Avatar, Box, IconButton, Stack, Typography } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import StyledBadge from "./StyledBadge";
-import { CallList } from "../data";
-import { Phone, VideoCamera } from "phosphor-react";
+import { Phone, VideoCamera } from 'phosphor-react';
+import React from 'react';
+
+import { Avatar, Box, IconButton, Stack, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+
+import { CallList } from '../data';
+import StyledBadge from './StyledBadge';
 
 type CallType = (typeof CallList)[0];
 

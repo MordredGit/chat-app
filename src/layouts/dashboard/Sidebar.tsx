@@ -1,24 +1,17 @@
-import { useTheme } from "@mui/material/styles";
-import {
-  Avatar,
-  Box,
-  ButtonBase,
-  Divider,
-  Fade,
-  IconButton,
-  Menu,
-  MenuItem,
-  Stack,
-} from "@mui/material";
-import React, { useState } from "react";
+import { Gear } from 'phosphor-react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-import Logo from "../../assets/Images/logo.ico";
-import { Nav_Buttons, Profile_Menu } from "../../data";
-import { Gear } from "phosphor-react";
-import { faker } from "@faker-js/faker";
-import useSettings from "../../hooks/useSettings";
-import AntSwitch from "../../components/AntSwitch";
-import { Link } from "react-router-dom";
+import { faker } from '@faker-js/faker';
+import {
+    Avatar, Box, ButtonBase, Divider, Fade, IconButton, Menu, MenuItem, Stack
+} from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+
+import Logo from '../../assets/Images/logo.ico';
+import AntSwitch from '../../components/AntSwitch';
+import { Nav_Buttons, Profile_Menu } from '../../data';
+import useSettings from '../../hooks/useSettings';
 
 const Sidebar = () => {
   const theme = useTheme();

@@ -1,8 +1,10 @@
-import React from "react";
-import { Avatar, Badge, Box, Stack, Typography } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import StyledBadge from "./StyledBadge";
-import { ChatList } from "../data";
+import React from 'react';
+
+import { Avatar, Badge, Box, Stack, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+
+import { ChatList } from '../data';
+import StyledBadge from './StyledBadge';
 
 type ChatType = (typeof ChatList)[0];
 
