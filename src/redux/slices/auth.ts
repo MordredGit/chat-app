@@ -1,18 +1,23 @@
-import { AlertColor } from '@mui/material';
-import { createSlice } from '@reduxjs/toolkit';
+import { AlertColor } from "@mui/material";
+import { createSlice } from "@reduxjs/toolkit";
 
-import axiosInstance from '../../utils/axios';
-import { dispatch as storeDispatch, RootReducerState } from '../store';
-import { ShowSnackbar } from './app';
+import axiosInstance from "../../utils/axios";
+import { getUserIdFromToken } from "../../utils/jwt";
+import { dispatch as storeDispatch, RootReducerState } from "../store";
+import { ShowSnackbar } from "./app";
 
-type ReturnType = {
+export type GenericReturnType = {
   status: AlertColor;
   message: string;
+};
+
+type AuthReturnType = GenericReturnType & {
   token?: string;
 };
 
 const initialState = {
   isLoggedIn: false,
+  userId: "",
   token: "",
   isLoading: false,
   email: "",
@@ -34,14 +39,19 @@ const slice = createSlice({
     },
     signIn(
       state,
-      action: { type: string; payload: { isLoggedIn: boolean; token: string } }
+      action: {
+        type: string;
+        payload: { isLoggedIn: boolean; token: string; userId: string };
+      }
     ) {
       state.isLoggedIn = action.payload.isLoggedIn;
       state.token = action.payload.token;
+      state.userId = action.payload.userId;
     },
     signOut(state) {
       state.isLoggedIn = false;
       state.token = "";
+      state.userId = "";
     },
     updateRegisterEmail(
       state,
@@ -63,7 +73,7 @@ export function LogInUser({
 }) {
   return async (dispatch: typeof storeDispatch, getState: any) => {
     axiosInstance
-      .post<ReturnType>(
+      .post<AuthReturnType>(
         "/auth/login",
         { email, password },
         { headers: { "Content-Type": "application/json" } }
@@ -79,7 +89,11 @@ export function LogInUser({
         }
 
         dispatch(
-          slice.actions.signIn({ isLoggedIn: true, token: res.data.token! })
+          slice.actions.signIn({
+            isLoggedIn: true,
+            token: res.data.token!,
+            userId: getUserIdFromToken(res.data.token),
+          })
         );
         dispatch(
           ShowSnackbar({ severity: res.data.status, message: res.data.message })
@@ -103,7 +117,7 @@ export function LogOutUser() {
 export function ForgotPassword({ email }: { email: string }) {
   return async (dispatch: typeof storeDispatch, getState: any) => {
     axiosInstance
-      .post<ReturnType>(
+      .post<AuthReturnType>(
         "/auth/forgot-password",
         { email },
         { headers: { "Content-Type": "application/json" } }
@@ -139,7 +153,7 @@ export function ResetPassword({
 }) {
   return async (dispatch: typeof storeDispatch, getState: any) => {
     axiosInstance
-      .post<ReturnType>(
+      .post<AuthReturnType>(
         "/auth/reset-password",
         { resetToken, password },
         { headers: { "Content-Type": "application/json" } }
@@ -150,7 +164,11 @@ export function ResetPassword({
         );
         if (res.data.status !== "success" && res.data.token) {
           dispatch(
-            slice.actions.signIn({ isLoggedIn: true, token: res.data.token })
+            slice.actions.signIn({
+              isLoggedIn: true,
+              token: res.data.token,
+              userId: getUserIdFromToken(res.data.token),
+            })
           );
         }
       })
@@ -181,7 +199,7 @@ export function RegisterUser(data: {
       })
     );
     axiosInstance
-      .post<ReturnType>(
+      .post<AuthReturnType>(
         "/auth/register",
         { ...data },
         {
@@ -240,7 +258,7 @@ export function RegisterUser(data: {
 export function VerifyEmail(data: { otp: string; email: string }) {
   return async (dispatch: typeof storeDispatch, getState: any) => {
     axiosInstance
-      .post<ReturnType>("/auth/verify-otp", data, {
+      .post<AuthReturnType>("/auth/verify-otp", data, {
         headers: { "Content-Type": "application/json" },
       })
       .then((res) => {
@@ -248,7 +266,11 @@ export function VerifyEmail(data: { otp: string; email: string }) {
 
         if (res.data.status === "success" && res.data.token) {
           dispatch(
-            slice.actions.signIn({ isLoggedIn: true, token: res.data.token })
+            slice.actions.signIn({
+              isLoggedIn: true,
+              token: res.data.token,
+              userId: getUserIdFromToken(res.data.token),
+            })
           );
         }
         dispatch(

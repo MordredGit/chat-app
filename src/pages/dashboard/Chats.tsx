@@ -23,9 +23,8 @@ import {
   SearchIconWrapper,
   SearchInputBase,
 } from "../../components/Search";
-import { SimpleBarStyle } from "../../components/Scrollbar";
 import { ChatList } from "../../data";
-import ChatElement from "../../components/ChatElement";
+import Friends from "../../sections/main/Friends";
 
 // TODO: Make it slide in and out from left for smaller windows
 const Chats = () => {
@@ -110,6 +109,9 @@ const Chats = () => {
           <Stack></Stack>
         </Stack>
       </Box>
+      {openDialog && (
+        <Friends open={openDialog} handleClose={handleCloseDialog} />
+      )}
     </>
   );
 };
