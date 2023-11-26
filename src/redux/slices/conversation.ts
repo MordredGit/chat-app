@@ -172,9 +172,11 @@ const slice = createSlice({
 
 export default slice.reducer;
 
-export const FetchIndividualConversations = (
-  conversations: IndividualConversationResponseType[]
-) => {
+export const FetchIndividualConversations = ({
+  conversations,
+}: {
+  conversations: IndividualConversationResponseType[];
+}) => {
   return async (
     dispatch: typeof storeDispatch,
     getState: () => RootReducerState
@@ -185,22 +187,26 @@ export const FetchIndividualConversations = (
     );
   };
 };
-export const UpdateIndividualConversations = (
-  conversation: IndividualConversationResponseType
-) => {
+export const UpdateIndividualConversations = ({
+  conversation,
+}: {
+  conversation: IndividualConversationResponseType;
+}) => {
   return async (
     dispatch: typeof storeDispatch,
     getState: () => RootReducerState
   ) => {
     const userId = getState().auth.userId;
     dispatch(
-      slice.actions.addIndividualConversations({ userId, conversation })
+      slice.actions.updateIndividualConversations({ userId, conversation })
     );
   };
 };
-export const AddIndividualConversations = (
-  conversation: IndividualConversationResponseType
-) => {
+export const AddIndividualConversations = ({
+  conversation,
+}: {
+  conversation: IndividualConversationResponseType;
+}) => {
   return async (
     dispatch: typeof storeDispatch,
     getState: () => RootReducerState

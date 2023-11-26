@@ -60,15 +60,23 @@ const DashboardLayout = () => {
       (data: IndividualConversationResponseType) => {
         console.log(data);
 
+        dispatch(AddIndividualConversations({ conversation: data }));
+        dispatch(SelectConversation({ roomId: data._id }));
+      }
+    );
+    socket.on(
+      "existing-conversation",
+      (data: IndividualConversationResponseType) => {
+        console.log(data);
+
         const existingConversation = conversations.filter(
           (conversation) => conversation.id === data._id
         );
         if (existingConversation.length !== 0) {
-          dispatch(UpdateIndividualConversations(data));
+          dispatch(UpdateIndividualConversations({ conversation: data }));
         } else {
-          dispatch(AddIndividualConversations(data));
+          console.log("Shouldn't Happen!!!");
         }
-        dispatch(SelectConversation({ roomId: data._id }));
       }
     );
 
