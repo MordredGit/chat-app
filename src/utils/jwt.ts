@@ -1,26 +1,34 @@
-import { jwtDecode } from "jwt-decode";
+import { jwtDecode, JwtPayload } from "jwt-decode";
+
 // import { PATH_AUTH } from "../routes/paths";
 //
 import axios from "./axios";
 
 // ----------------------------------------------------------------------
 
-const getUserIdFromToken = (accessToken) => {
+interface PayloadType extends JwtPayload {
+  userId: string;
+}
+const getUserIdFromToken = (accessToken: string) => {
   if (!accessToken) {
-    return false;
+    return "";
   }
-  const decoded = jwtDecode(accessToken);
+  const decoded = jwtDecode<PayloadType>(accessToken);
   console.log(decoded);
   return decoded["userId"];
 };
 
-const isValidToken = (accessToken) => {
+const isValidToken = (accessToken: string) => {
   if (!accessToken) {
     return false;
   }
   const decoded = jwtDecode(accessToken);
 
   const currentTime = Date.now() / 1000;
+  if (decoded === undefined || decoded.exp === undefined) {
+    console.log("Something went wrong while authentication");
+    return false;
+  }
 
   return decoded.exp > currentTime;
 };
