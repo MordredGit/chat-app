@@ -23,14 +23,18 @@ import {
   SearchIconWrapper,
   SearchInputBase,
 } from "../../components/Search";
-import { MessageType } from "../../redux/slices/conversation";
-import { useSelector } from "../../redux/store";
+import {
+  FetchIndividualConversations,
+  IndividualConversationResponseType,
+} from "../../redux/slices/conversation";
+import { useDispatch, useSelector } from "../../redux/store";
 import Friends, { TabLabel } from "../../sections/main/Friends";
 import { socket } from "../../socket";
 
 // TODO: Make it slide in and out from left for smaller windows
 const Chats = () => {
   const theme = useTheme();
+  const dispatch = useDispatch();
   const userId = useSelector((state) => state.auth.userId);
   const conversations = useSelector(
     (state) => state.conversation.directChat.conversations
@@ -40,8 +44,14 @@ const Chats = () => {
   const [tabValue, setTabValue] = useState<TabLabel>("explore");
 
   useEffect(() => {
-    socket.emit("get-indiv-conv", { userId }, (data: MessageType[]) => {});
-  }, [userId]);
+    socket.emit(
+      "get-indiv-conv",
+      { userId },
+      (data: IndividualConversationResponseType[]) => {
+        dispatch(FetchIndividualConversations({ conversations: data }));
+      }
+    );
+  }, [dispatch, userId]);
 
   const handleOpenDialog = (tabValue: TabLabel) => {
     setOpenDialog(true);
