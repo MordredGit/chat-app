@@ -31,7 +31,7 @@ const UsersList = () => {
   );
 };
 
-const FriendsList = () => {
+const FriendsList = ({ handleClose }: { handleClose: () => void }) => {
   const dispatch = useDispatch();
   const friends = useSelector((state) => state.app.friends);
   useEffect(() => {
@@ -42,7 +42,12 @@ const FriendsList = () => {
   return (
     <ul>
       {friends.map((user) => (
-        <FriendElement key={user._id} id={user._id} {...user} />
+        <FriendElement
+          key={user._id}
+          id={user._id}
+          {...user}
+          handleClose={handleClose}
+        />
       ))}
     </ul>
   );
@@ -114,7 +119,7 @@ const Friends = ({
                   case "friends":
                     return (
                       <div>
-                        <FriendsList />
+                        <FriendsList handleClose={handleClose} />
                       </div>
                     );
                   case "requests":

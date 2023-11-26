@@ -192,6 +192,7 @@ const FriendElement = ({
   missed,
   online,
   id,
+  handleClose,
 }: {
   img?: string;
   firstName: string;
@@ -200,6 +201,7 @@ const FriendElement = ({
   missed?: boolean;
   online: boolean;
   id: string;
+  handleClose: () => void;
 }) => {
   const theme = useTheme();
   const userId = useSelector((state) => state.auth.userId);
@@ -244,6 +246,7 @@ const FriendElement = ({
             onClick={() => {
               // start a new conversation
               socket.emit("start-conversation", { to: id, from: userId });
+              handleClose();
             }}
           >
             <Chat />
