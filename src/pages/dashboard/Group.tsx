@@ -1,14 +1,25 @@
-import { MagnifyingGlass, Plus } from 'phosphor-react';
-import React, { useState } from 'react';
+import { MagnifyingGlass, Plus } from "phosphor-react";
+import React, { useState } from "react";
 
-import { Box, Divider, IconButton, Link, Stack, Typography } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+import {
+  Box,
+  Divider,
+  IconButton,
+  Link,
+  Stack,
+  Typography,
+} from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
-import ChatElement from '../../components/ChatElement';
-import { SimpleBarStyle } from '../../components/Scrollbar';
-import { Search, SearchIconWrapper, SearchInputBase } from '../../components/Search';
-import { ChatList } from '../../data';
-import CreateGroup from '../../sections/main/CreateGroup';
+import ChatElement from "../../components/ChatElement";
+import { SimpleBarStyle } from "../../components/Scrollbar";
+import {
+  Search,
+  SearchIconWrapper,
+  SearchInputBase,
+} from "../../components/Search";
+import { ChatList } from "../../data";
+import CreateGroup from "../../sections/main/CreateGroup";
 
 const Group = () => {
   const theme = useTheme();
@@ -86,13 +97,21 @@ const Group = () => {
                     Pinned
                   </Typography>
                   {ChatList.filter((chat) => chat.pinned).map((chat) => (
-                    <ChatElement key={chat.id} {...chat} />
+                    <ChatElement
+                      key={chat.id}
+                      {...chat}
+                      id={chat.id.toString()}
+                    />
                   ))}
                   <Typography variant="subtitle2" sx={{ color: "#676767" }}>
                     All Group Chats
                   </Typography>
                   {ChatList.filter((chat) => !chat.pinned).map((chat) => (
-                    <ChatElement key={chat.id} {...chat} />
+                    <ChatElement
+                      key={chat.id}
+                      {...chat}
+                      id={chat.id.toString()}
+                    />
                   ))}
                 </Stack>
               </SimpleBarStyle>

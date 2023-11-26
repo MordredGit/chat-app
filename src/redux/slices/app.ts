@@ -12,20 +12,20 @@ type UsersReturnType = GenericReturnType & { data: User[] };
 type FriendsReturnType = GenericReturnType & {
   data: { friends: User[]; _id: string };
 };
-type FriendRequestsReturnType = GenericReturnType & { data: User[] };
+type FriendRequestsReturnType = GenericReturnType & { data: FriendRequest[] };
 
 export interface User {
   _id: string;
   firstName: string;
   lastName: string;
+  online: boolean;
 }
-// export interface IFriendRequest
-//    {
-//     _id: string;
-//   sender: string;
-//   recipient: string;
-//   createdAt: Date;
-// }
+export interface FriendRequest {
+  _id: string;
+  sender: { _id: string; firstName: string; lastName: string; status: boolean };
+  recipient: string;
+  createdAt: Date;
+}
 const initialState = {
   sidebar: {
     open: false,
@@ -38,7 +38,9 @@ const initialState = {
   },
   users: [] as User[],
   friends: [] as User[],
-  requests: [] as User[],
+  requests: [] as FriendRequest[],
+  chatType: null as "Individual" | "Group" | null,
+  roomId: null as string | null,
 };
 
 const slice = createSlice({
@@ -70,8 +72,12 @@ const slice = createSlice({
     updateFriends(state, action: { payload: { friends: User[] } }) {
       state.friends = action.payload.friends;
     },
-    updateRequests(state, action: { payload: { requests: User[] } }) {
-      state.users = action.payload.requests;
+    updateRequests(state, action: { payload: { requests: FriendRequest[] } }) {
+      state.requests = action.payload.requests;
+    },
+    selectConversation(state, action: { payload: { roomId: string } }) {
+      state.chatType = "Individual";
+      state.roomId = action.payload.roomId;
     },
   },
 });
@@ -165,5 +171,12 @@ export function FetchRequests() {
         dispatch(slice.actions.openSnackbar({ severity: status, message }));
       })
       .catch((err) => console.log(err));
+  };
+}
+
+export function SelectConversation({ roomId }: { roomId: string }) {
+  return async (dispatch: typeof storeDispatch, getState: any) => {
+    dispatch(slice.actions.selectConversation({ roomId }));
+    // setTimeout(() => dispatch(slice.actions.closeSnackbar()), 3000);
   };
 }

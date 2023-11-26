@@ -1,18 +1,20 @@
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
 
-import { Box, Stack } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+import { Box, Stack, Typography } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
-import Contact from '../../components/Contact';
-import Conversation from '../../components/Conversation';
-import SharedMessages from '../../components/SharedMessages';
-import StarredMessages from '../../components/StarredMessages';
-import { useSelector } from '../../redux/store';
-import Chats from './Chats';
+import NoChat from "../../assets/Illustration/NoChat";
+import Contact from "../../components/Contact";
+import Conversation from "../../components/Conversation";
+import SharedMessages from "../../components/SharedMessages";
+import StarredMessages from "../../components/StarredMessages";
+import { useSelector } from "../../redux/store";
+import Chats from "./Chats";
 
 const GeneralApp = () => {
   const theme = useTheme();
-  const { sidebar } = useSelector((store) => store.app);
+  const { sidebar, chatType, roomId } = useSelector((store) => store.app);
   return (
     <Stack direction={"row"} sx={{ width: "100%" }}>
       <Chats />
@@ -26,7 +28,30 @@ const GeneralApp = () => {
               : theme.palette.background.paper,
         }}
       >
-        <Conversation />
+        {roomId !== null && chatType === "Individual" ? (
+          <Conversation />
+        ) : (
+          <Stack
+            spacing={2}
+            sx={{ height: "100%", width: "100%" }}
+            alignItems="center"
+            justifyContent={"center"}
+          >
+            <NoChat />
+            <Typography variant="subtitle2">
+              Select a conversation or start a{" "}
+              <Link
+                style={{
+                  color: theme.palette.primary.main,
+                  textDecoration: "none",
+                }}
+                to="/"
+              >
+                new one
+              </Link>
+            </Typography>
+          </Stack>
+        )}
       </Box>
       {/* Contact */}
       {sidebar.open &&

@@ -4,7 +4,7 @@ import {
   MagnifyingGlass,
   Users,
 } from "phosphor-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   Box,
@@ -23,16 +23,30 @@ import {
   SearchIconWrapper,
   SearchInputBase,
 } from "../../components/Search";
-import { ChatList } from "../../data";
-import Friends from "../../sections/main/Friends";
+import { MessageType } from "../../redux/slices/conversation";
+import { useSelector } from "../../redux/store";
+import Friends, { TabLabel } from "../../sections/main/Friends";
+import { socket } from "../../socket";
 
 // TODO: Make it slide in and out from left for smaller windows
 const Chats = () => {
   const theme = useTheme();
+  const userId = useSelector((state) => state.auth.userId);
+  const conversations = useSelector(
+    (state) => state.conversation.directChat.conversations
+  );
   const isLightMode = theme.palette.mode === "light";
-  const [openDialog, setOpenDialog] = useState(true);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [tabValue, setTabValue] = useState<TabLabel>("explore");
 
-  const handleOpenDialog = () => setOpenDialog(true);
+  useEffect(() => {
+    socket.emit("get-indiv-conv", { userId }, (data: MessageType[]) => {});
+  }, [userId]);
+
+  const handleOpenDialog = (tabValue: TabLabel) => {
+    setOpenDialog(true);
+    setTabValue(tabValue);
+  };
   const handleCloseDialog = () => setOpenDialog(false);
   return (
     <>
@@ -62,10 +76,10 @@ const Chats = () => {
               Chats
             </Typography>
             <Stack direction={"row"} alignItems={"center"} spacing={1}>
-              <IconButton>
+              <IconButton onClick={() => handleOpenDialog("friends")}>
                 <CircleDashed />
               </IconButton>
-              <IconButton>
+              <IconButton onClick={() => handleOpenDialog("explore")}>
                 <Users />
               </IconButton>
             </Stack>
@@ -91,18 +105,20 @@ const Chats = () => {
           >
             <SimpleBarStyle timeout={500}>
               <Stack spacing={2.4}>
-                <Typography variant="subtitle2" sx={{ color: "#676767" }}>
+                {/* <Typography variant="subtitle2" sx={{ color: "#676767" }}>
                   Pinned
                 </Typography>
                 {ChatList.filter((chat) => chat.pinned).map((chat) => (
                   <ChatElement key={chat.id} {...chat} />
-                ))}
+                ))} */}
                 <Typography variant="subtitle2" sx={{ color: "#676767" }}>
                   All Chats
                 </Typography>
-                {ChatList.filter((chat) => !chat.pinned).map((chat) => (
-                  <ChatElement key={chat.id} {...chat} />
-                ))}
+                {conversations
+                  .filter((chat) => !chat.pinned)
+                  .map((chat) => (
+                    <ChatElement key={chat.id} {...chat} />
+                  ))}
               </Stack>
             </SimpleBarStyle>
           </Stack>
@@ -110,7 +126,11 @@ const Chats = () => {
         </Stack>
       </Box>
       {openDialog && (
-        <Friends open={openDialog} handleClose={handleCloseDialog} />
+        <Friends
+          open={openDialog}
+          tabValue={tabValue}
+          handleClose={handleCloseDialog}
+        />
       )}
     </>
   );

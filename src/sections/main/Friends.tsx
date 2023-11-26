@@ -1,7 +1,12 @@
-import React, { SyntheticEvent, useEffect, useMemo, useState } from "react";
+import React, { SyntheticEvent, useEffect, useState } from "react";
 
 import { Dialog, DialogContent, Stack, Tab, Tabs } from "@mui/material";
 
+import {
+  FriendElement,
+  FriendRequestElement,
+  UserElement,
+} from "../../components/Friends";
 import {
   FetchFriends,
   FetchRequests,
@@ -20,9 +25,7 @@ const UsersList = () => {
   return (
     <ul>
       {users.map((user) => (
-        <li key={user._id}>
-          {user.firstName} {user.lastName}
-        </li>
+        <UserElement key={user._id} id={user._id} {...user} img="aaaa" />
       ))}
     </ul>
   );
@@ -39,9 +42,7 @@ const FriendsList = () => {
   return (
     <ul>
       {friends.map((user) => (
-        <li key={user._id}>
-          {user.firstName} {user.lastName}
-        </li>
+        <FriendElement key={user._id} id={user._id} {...user} />
       ))}
     </ul>
   );
@@ -57,24 +58,29 @@ const FriendRequestsList = () => {
 
   return (
     <ul>
-      {friendRequests.map((user) => (
-        <li key={user._id}>
-          {user.firstName} {user.lastName}
-        </li>
+      {friendRequests.map((requests) => (
+        <FriendRequestElement
+          key={requests._id}
+          {...requests.sender}
+          id={requests._id}
+          online={requests.sender.status}
+        />
       ))}
     </ul>
   );
 };
 
-type TabLabel = "explore" | "friends" | "requests";
+export type TabLabel = "explore" | "friends" | "requests";
 const Friends = ({
   open,
+  tabValue,
   handleClose,
 }: {
   open: boolean;
+  tabValue: TabLabel;
   handleClose: () => void;
 }) => {
-  const [value, setValue] = useState<TabLabel>("explore");
+  const [value, setValue] = useState<TabLabel>(tabValue);
   const handleChange = (
     event: SyntheticEvent<Element, Event>,
     value: TabLabel
