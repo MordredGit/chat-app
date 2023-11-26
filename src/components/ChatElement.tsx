@@ -1,12 +1,15 @@
-import React from 'react';
+import React from "react";
 
-import { Avatar, Badge, Box, Stack, Typography } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+import { Avatar, Badge, Box, Stack, Typography } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
-import { ChatList } from '../data';
-import StyledBadge from './StyledBadge';
+import { ChatList } from "../data";
+import { SelectConversation } from "../redux/slices/app";
+import { ConversationType } from "../redux/slices/conversation";
+import { useDispatch } from "../redux/store";
+import StyledBadge from "./StyledBadge";
 
-type ChatType = (typeof ChatList)[0];
+// type ChatType = (typeof ChatList)[0];
 
 const ChatElement = ({
   id,
@@ -16,8 +19,9 @@ const ChatElement = ({
   time,
   unread,
   online,
-}: ChatType) => {
+}: ConversationType) => {
   const theme = useTheme();
+  const dispatch = useDispatch();
 
   return (
     <Box
@@ -28,6 +32,7 @@ const ChatElement = ({
         backgroundColor: theme.palette.background.default,
       }}
       p={2}
+      onClick={() => dispatch(SelectConversation({ roomId: id }))}
     >
       <Stack direction={"row"} justifyContent={"space-between"}>
         <Stack direction={"row"} spacing={2}>
